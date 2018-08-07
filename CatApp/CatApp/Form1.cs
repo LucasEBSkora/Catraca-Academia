@@ -38,11 +38,20 @@ namespace CatApp
         {
             switch (e.ColumnIndex)
             {
-                case 5:
+                case 5: //adicionar aulas
+                    MessageBox.Show("diálogo para adicionar aulas");
                     break;
-                case 6:
+                case 6: //deletar aluno
+                    if (MessageBox.Show("Você tem certeza que deseja deletar todas as informações desse aluno? Se apenas torná-lo inativo, suas informações não serão deletadas, mas também não poderá entrar na academia.","Deseja deletar esse aluno?",MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                    {
+                        alunosBindingSource.RemoveAt(e.RowIndex);
+                        this.Validate();
+                        this.alunosBindingSource.EndEdit();
+                        this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                    }
                     break;
-                case 7:
+                case 7: //editar aluno
+                    MessageBox.Show("diálogo para editar os dados do aluno");
                     break;
 
             }

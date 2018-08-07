@@ -61,5 +61,10 @@ namespace CatApp
             this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
             this.Close();
         }
+        
+        private void textBoxNome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

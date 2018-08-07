@@ -76,6 +76,7 @@
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(171, 22);
             this.textBoxNome.TabIndex = 3;
+            this.textBoxNome.TextChanged += new System.EventHandler(this.textBoxNome_TextChanged);
             // 
             // checkBoxAtivo
             // 
@@ -96,6 +97,7 @@
             this.TextBoxAulas.Name = "TextBoxAulas";
             this.TextBoxAulas.Size = new System.Drawing.Size(43, 22);
             this.TextBoxAulas.TabIndex = 6;
+            this.TextBoxAulas.Text = "0";
             this.TextBoxAulas.ValidatingType = typeof(int);
             this.TextBoxAulas.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
