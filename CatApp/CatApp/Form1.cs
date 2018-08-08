@@ -31,7 +31,6 @@ namespace CatApp
         {
             // TODO: esta linha de código carrega dados na tabela 'database_alunosDataSet.Alunos'. Você pode movê-la ou removê-la conforme necessário.
             this.alunosTableAdapter.Fill(this.database_alunosDataSet.Alunos);
-
         }
 
         private void alunosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -48,10 +47,13 @@ namespace CatApp
                         this.Validate();
                         this.alunosBindingSource.EndEdit();
                         this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                        
                     }
                     break;
                 case 7: //editar aluno
-                    MessageBox.Show("diálogo para editar os dados do aluno");
+                    Form3 f3 = new Form3(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, e.RowIndex);
+                    f3.ShowDialog();
+
                     break;
 
             }
