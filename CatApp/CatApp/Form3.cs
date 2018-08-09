@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace CatApp
 {
-    public partial class Form3 : Form
+    public partial class FormEditarAluno : Form
     {
         private Database_alunosDataSetTableAdapters.TableAdapterManager AlunosTableAdapterManager;
         private System.Windows.Forms.BindingSource AlunosBindingSource;
         Database_alunosDataSet database_alunosDataSet;
         int index;
         DataRow aluno_editado;
-        public Form3(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index)
+        public FormEditarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index)
         {
             InitializeComponent();
             AlunosTableAdapterManager = a;
@@ -47,6 +47,11 @@ namespace CatApp
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

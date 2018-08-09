@@ -1,6 +1,6 @@
 ﻿namespace CatApp
 {
-    partial class Form3
+    partial class FormEditarAluno
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,24 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(245, 89);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(139, 21);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Aluno está ativo?";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(16, 87);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(171, 22);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -89,24 +107,7 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(245, 89);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(139, 21);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Aluno está ativo?";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(16, 87);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(171, 22);
-            this.textBox1.TabIndex = 2;
-            // 
-            // Form3
+            // FormEditarAluno
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -116,7 +117,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Name = "Form3";
+            this.Name = "FormEditarAluno";
             this.Text = "Editar aluno";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

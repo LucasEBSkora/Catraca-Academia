@@ -38,7 +38,8 @@ namespace CatApp
             switch (e.ColumnIndex)
             {
                 case 5: //adicionar aulas
-                    MessageBox.Show("diálogo para adicionar aulas");
+                    FormAdicionarAulas f4 = new FormAdicionarAulas(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, e.RowIndex);
+                    f4.ShowDialog();
                     break;
                 case 6: //deletar aluno
                     if (MessageBox.Show("Você tem certeza que deseja deletar todas as informações desse aluno? Se apenas torná-lo inativo, suas informações não serão deletadas, mas também não poderá entrar na academia.","Deseja deletar esse aluno?",MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
@@ -51,7 +52,7 @@ namespace CatApp
                     }
                     break;
                 case 7: //editar aluno
-                    Form3 f3 = new Form3(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, e.RowIndex);
+                    FormEditarAluno f3 = new FormEditarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, e.RowIndex);
                     f3.ShowDialog();
 
                     break;
@@ -61,7 +62,7 @@ namespace CatApp
 
         private void botaoadicionar_Click(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet);
+            FormAdicionarAluno f2 = new FormAdicionarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet);
             f2.ShowDialog();
         }
 

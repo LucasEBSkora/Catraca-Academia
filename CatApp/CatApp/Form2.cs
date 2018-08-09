@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace CatApp
 {
-    public partial class Form2 : Form
+    public partial class FormAdicionarAluno : Form
     {
         private Database_alunosDataSetTableAdapters.TableAdapterManager AlunosTableAdapterManager;
         private System.Windows.Forms.BindingSource AlunosBindingSource;
         Database_alunosDataSet database_alunosDataSet;
-        public Form2(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c)
+        public FormAdicionarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c)
         {
             InitializeComponent();
             AlunosTableAdapterManager = a;
@@ -30,7 +30,7 @@ namespace CatApp
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            MessageBox.Show("Insira um número!");
+            MessageBox.Show("esse campo aceita apenas números positivos menores que cem mil!", "erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             TextBoxAulas.ResetText();
         }
 

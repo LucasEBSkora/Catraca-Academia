@@ -1,6 +1,6 @@
 ﻿namespace CatApp
 {
-    partial class Form2
+    partial class FormAdicionarAluno
     {
         /// <summary>
         /// Required designer variable.
@@ -132,7 +132,7 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             // 
-            // Form2
+            // FormAdicionarAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,7 +141,7 @@
             this.Controls.Add(this.buttonVerificar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonAdicionar);
-            this.Name = "Form2";
+            this.Name = "FormAdicionarAluno";
             this.Text = "Adicionar Aluno";
             this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
