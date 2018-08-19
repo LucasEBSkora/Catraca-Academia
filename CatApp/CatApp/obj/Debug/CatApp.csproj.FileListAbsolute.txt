@@ -22,3 +22,8 @@ C:\Users\skora\OneDrive\Catraca Academia\projeto_catraca\CatApp\CatApp\obj\Debug
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.FormAdicionarAluno.resources
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.FormEditarAluno.resources
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.FormAdicionarAulas.resources
+C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.csproj.CopyComplete
