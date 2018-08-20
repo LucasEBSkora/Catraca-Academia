@@ -69,6 +69,7 @@
             this.buttonVerificar.TabIndex = 2;
             this.buttonVerificar.Text = "Verificar Cartão";
             this.buttonVerificar.UseVisualStyleBackColor = true;
+            this.buttonVerificar.Click += new System.EventHandler(this.buttonVerificar_Click);
             // 
             // textBoxNome
             // 

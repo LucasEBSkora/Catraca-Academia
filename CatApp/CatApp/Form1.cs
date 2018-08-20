@@ -16,9 +16,10 @@ namespace CatApp
     public partial class Form1 : Form
     {
         bool mostrar_alunos_inativos = false;
-
-        public Form1()
+        ClienteREST cliente;
+        public Form1(ref ClienteREST Cliente)
         {
+            cliente = Cliente;
             InitializeComponent();
             alunosBindingSource.Filter = "Aluno_ativo= true";
         }
@@ -55,7 +56,7 @@ namespace CatApp
                     }
                     break;
                 case 7: //editar aluno
-                    FormEditarAluno f3 = new FormEditarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, e.RowIndex);
+                    FormEditarAluno f3 = new FormEditarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, e.RowIndex, ref cliente);
                     f3.ShowDialog();
 
                     break;
@@ -65,7 +66,7 @@ namespace CatApp
 
         private void botaoadicionar_Click(object sender, EventArgs e)
         {
-            FormAdicionarAluno f2 = new FormAdicionarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet);
+            FormAdicionarAluno f2 = new FormAdicionarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, ref cliente);
             f2.ShowDialog();
         }
 

@@ -18,7 +18,10 @@ namespace CatApp
         Database_alunosDataSet database_alunosDataSet;
         int index;
         DataRow aluno_editado;
-        public FormEditarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index)
+        ClienteREST cliente;
+        public string CodigoRFID;
+
+        public FormEditarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index, ref ClienteREST Cliente)
         {
             InitializeComponent();
             AlunosTableAdapterManager = a;
@@ -28,13 +31,14 @@ namespace CatApp
             aluno_editado = database_alunosDataSet.Alunos.Rows[index];
             textBox1.Text = (string)aluno_editado["Nome"];
             checkBox1.Checked = (bool)aluno_editado["aluno_ativo"];
-
+            cliente = Cliente;
+            CodigoRFID = (string)aluno_editado["Código RFID"];
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             aluno_editado["Nome"] = textBox1.Text;
-            aluno_editado["Código RFID"] = 1;
+            aluno_editado["Código RFID"] = CodigoRFID;
             aluno_editado["Aluno_ativo"] = checkBox1.Checked;
             this.Validate();
             this.AlunosBindingSource.EndEdit();
@@ -49,7 +53,21 @@ namespace CatApp
 
         private void button2_Click(object sender, EventArgs e)
         {
+            retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(cliente.makeRequest(Comandos.readme));
 
+            if (AlunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid) == index)
+            {
+                MessageBox.Show("esse já é o cartão desse aluno!", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (AlunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid) != -1)
+            {
+                MessageBox.Show("esse cartão já foi cadastrado para outro aluno!", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Novo cartão lido com sucesso!", "sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                CodigoRFID = retorno.variables.rfid_uid;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

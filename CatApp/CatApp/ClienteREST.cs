@@ -21,7 +21,7 @@ namespace CatApp
         ledOff,
         readme
     }
-    class ClienteREST
+    public class ClienteREST
     {
         public string endereco { get; set; }
         public httpVerb httpMethod { get; set; }
