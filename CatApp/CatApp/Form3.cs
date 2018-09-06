@@ -17,7 +17,7 @@ namespace CatApp
         private System.Windows.Forms.BindingSource AlunosBindingSource;
         Database_alunosDataSet database_alunosDataSet;
         int index;
-        DataRow aluno_editado;
+        DataRowView aluno_editado;
         ClienteREST cliente;
         public string CodigoRFID;
 
@@ -28,7 +28,7 @@ namespace CatApp
             AlunosBindingSource = b;
             database_alunosDataSet = c;
             index = row_index;
-            aluno_editado = database_alunosDataSet.Alunos.Rows[index];
+            aluno_editado = (DataRowView)AlunosBindingSource.List[index];
             textBox1.Text = (string)aluno_editado["Nome"];
             checkBox1.Checked = (bool)aluno_editado["aluno_ativo"];
             cliente = Cliente;

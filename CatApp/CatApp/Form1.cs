@@ -39,6 +39,8 @@ namespace CatApp
 
         private void alunosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
+            MessageBox.Show(e.RowIndex.ToString());
             switch (e.ColumnIndex)
             {
                 case 5: //adicionar aulas

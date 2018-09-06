@@ -19,7 +19,7 @@ namespace CatApp
         private System.Windows.Forms.BindingSource AlunosBindingSource;
         Database_alunosDataSet database_alunosDataSet;
         int index;
-        DataRow aluno_editado;
+        DataRowView aluno_editado;
         public FormAdicionarAulas(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index)
         {
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace CatApp
             AlunosBindingSource = b;
             database_alunosDataSet = c;
             index = row_index;
-            aluno_editado = database_alunosDataSet.Alunos.Rows[index];
+            aluno_editado = (DataRowView)AlunosBindingSource.List[index];
             TextBoxAulasTotais.Text = aluno_editado["Aulas pagas"].ToString();
         }
 
@@ -39,17 +39,21 @@ namespace CatApp
         private void botaoAdicionar_Click(object sender, EventArgs e)
         {
             bool resultado = false;
+            if (TextBoxAulasAdicionadas.Text == "") {
+                MessageBox.Show("escreva quantas aulas você deseja adicionar à esse aluno!", "Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int valor = Int32.Parse(TextBoxAulasAdicionadas.Text);
             if (valor > 0)
             {
-                if (MessageBox.Show("Você deseja adicionar " + TextBoxAulasAdicionadas.Text + "aulas ao aluno" + (string)aluno_editado["Nome"] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Você deseja adicionar " + TextBoxAulasAdicionadas.Text + " aulas ao aluno " + (string)aluno_editado["Nome"] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     resultado = true;
                 }
             }
             else if (valor < 0)
             {
-                if (MessageBox.Show("Você deseja remover " + (-valor) + " aulas ao aluno " + (string)aluno_editado["Nome"] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Você deseja remover " + (-valor) + " aulas do aluno " + (string)aluno_editado["Nome"] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     resultado = true;
                 }

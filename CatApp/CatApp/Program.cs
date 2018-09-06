@@ -32,7 +32,7 @@ namespace CatApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             cliente.endereco = "http://192.168.0.26/";
-            cliente.makeRequest(Comandos.ledOn);
+            //cliente.makeRequest(Comandos.ledOn);
             Application.Run(new Form1(ref cliente));
         }
     }
