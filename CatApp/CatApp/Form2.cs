@@ -80,7 +80,7 @@ namespace CatApp
 
         private void buttonVerificar_Click(object sender, EventArgs e)
         {
-            retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(cliente.makeRequest(Comandos.readme));
+            retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(cliente.makeRequest(Comandos./*readme*/jsonSim));
             if (AlunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid) != -1) {
                 MessageBox.Show("esse cartão já foi cadastrado!", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -89,6 +89,11 @@ namespace CatApp
                 MessageBox.Show("Novo cartão lido com sucesso!","sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 CodigoRFID = retorno.variables.rfid_uid;
             }   
+        }
+
+        private void FormAdicionarAluno_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -10,25 +10,46 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 
 namespace CatApp
 {
     public partial class Form1 : Form
     {
         bool mostrar_alunos_inativos = false;
-        ClienteREST cliente;
+        static ClienteREST cliente;
+        static object Trava = new object();
         public Form1(ref ClienteREST Cliente)
         {
             cliente = Cliente;
             InitializeComponent();
             alunosBindingSource.Filter = "Aluno_ativo= true";
+            var thread = new Thread(() => checar_porta(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet));
+            thread.Start();
         }
-
-        private void alunosBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        static void checar_porta(ref Database_alunosDataSetTableAdapters.TableAdapterManager tableAdapterManager, ref System.Windows.Forms.BindingSource alunosBindingSource, ref Database_alunosDataSet database_alunosDataSet)
         {
-            this.Validate();
-            this.alunosBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
+            retornoRFID retorno;
+            while (true)
+            {
+                lock (Trava) {retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(cliente.makeRequest(Comandos./*readme*/jsonSim)); }
+                if (retorno.variables.rfid_uid != "0")
+                {
+                    int indice = alunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid);
+                    if (indice == -1) /*messsagem de negação*/; 
+                    else
+                    {
+                        DataRowView aluno = (DataRowView)alunosBindingSource.List[indice];
+                        MessageBox.Show((string)aluno["Nome"]);
+                        /*
+                        this.Validate();
+                        this.alunosBindingSource.EndEdit();
+                        this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                    */}
+                }
+                Thread.Sleep(500); //de quanto em quanto tempo o programa deve verificar a porta?
+            }
+        
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -40,7 +61,6 @@ namespace CatApp
         private void alunosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
-            MessageBox.Show(e.RowIndex.ToString());
             switch (e.ColumnIndex)
             {
                 case 5: //adicionar aulas
@@ -72,10 +92,6 @@ namespace CatApp
             f2.ShowDialog();
         }
 
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -93,6 +109,11 @@ namespace CatApp
                 dataGridViewCheckBoxColumn1.Visible = false;
                 alunosBindingSource.Filter = "Aluno_ativo= true";
             }
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

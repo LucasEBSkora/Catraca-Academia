@@ -19,6 +19,7 @@ namespace CatApp
         public string hardware { get; set; }
         public string connected { get; set; }
     }
+
     static class Program
     {
         /// <summary>
@@ -31,7 +32,8 @@ namespace CatApp
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            cliente.endereco = "http://192.168.0.26/";
+            //cliente.endereco = "http://192.168.0.26/";
+            cliente.endereco = "https://my-json-server.typicode.com/LucasEBSkora/";
             //cliente.makeRequest(Comandos.ledOn);
             Application.Run(new Form1(ref cliente));
         }

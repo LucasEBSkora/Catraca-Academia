@@ -19,7 +19,8 @@ namespace CatApp
     {
         ledOn,
         ledOff,
-        readme
+        readme,
+        jsonSim //usado para desenvolvimento apenas
     }
     public class ClienteREST
     {
@@ -36,8 +37,7 @@ namespace CatApp
         {
             string strResponseValue = string.Empty;
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endereco + comando.ToString());
-
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endereco + comando.ToString() + ((comando == Comandos.jsonSim) ? "/db" : string.Empty));
             request.Method = httpMethod.ToString();
 
             using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())

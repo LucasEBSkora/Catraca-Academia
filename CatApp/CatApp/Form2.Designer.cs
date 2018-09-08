@@ -145,6 +145,7 @@
             this.Name = "FormAdicionarAluno";
             this.Text = "Adicionar Aluno";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.FormAdicionarAluno_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

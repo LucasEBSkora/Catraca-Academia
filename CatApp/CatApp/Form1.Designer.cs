@@ -48,6 +48,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ts_mostraralunos = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             ((System.ComponentModel.ISupportInitialize)(this.database_alunosDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alunosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alunosDataGridView)).BeginInit();
@@ -206,11 +207,22 @@
             this.ts_mostraralunos.Text = "Escondendo Alunos Inativos";
             this.ts_mostraralunos.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Location = new System.Drawing.Point(0, 571);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(1034, 24);
+            this.statusStrip.TabIndex = 5;
+            this.statusStrip.Text = "statusStrip1";
+            this.statusStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 595);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.botaoadicionar);
             this.Controls.Add(this.alunosDataGridView);
             this.Controls.Add(this.menuStrip1);
@@ -250,6 +262,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn adicionar_aulas;
         private System.Windows.Forms.DataGridViewButtonColumn deletar;
         private System.Windows.Forms.DataGridViewButtonColumn editar;
+        private System.Windows.Forms.StatusStrip statusStrip;
     }
 }
 

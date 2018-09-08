@@ -53,7 +53,7 @@ namespace CatApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(cliente.makeRequest(Comandos.readme));
+            retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(cliente.makeRequest(Comandos./*readme*/jsonSim));
 
             if (AlunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid) == index)
             {
