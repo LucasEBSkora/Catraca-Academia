@@ -27,3 +27,4 @@ C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\bin\Debug\System.Net.Http
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.csproj.CopyComplete
+C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.FormPegarID.resources

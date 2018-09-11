@@ -18,10 +18,9 @@ namespace CatApp
         Database_alunosDataSet database_alunosDataSet;
         int index;
         DataRowView aluno_editado;
-        ClienteREST cliente;
         public string CodigoRFID;
-
-        public FormEditarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index, ref ClienteREST Cliente)
+        object Trava;
+        public FormEditarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index, ref object trava)
         {
             InitializeComponent();
             AlunosTableAdapterManager = a;
@@ -29,55 +28,85 @@ namespace CatApp
             database_alunosDataSet = c;
             index = row_index;
             aluno_editado = (DataRowView)AlunosBindingSource.List[index];
-            textBox1.Text = (string)aluno_editado["Nome"];
+            Nome.Text = (string)aluno_editado["Nome"];
             checkBox1.Checked = (bool)aluno_editado["aluno_ativo"];
-            cliente = Cliente;
             CodigoRFID = (string)aluno_editado["Código RFID"];
+            AulasPagas.Text = aluno_editado["Aulas pagas"].ToString();
+            historico.Text = (string)aluno_editado["historico"];
+            historico_med.Text = (string)aluno_editado["historico_medico"];
+            anotacoes.Text = (string)aluno_editado["anotacoes"];
+            data.Text = (string)aluno_editado["data_inscricao"];
+            Trava = trava;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            aluno_editado["Nome"] = textBox1.Text;
-            aluno_editado["Código RFID"] = CodigoRFID;
-            aluno_editado["Aluno_ativo"] = checkBox1.Checked;
-            this.Validate();
-            this.AlunosBindingSource.EndEdit();
-            this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
-            this.Close();
+            if (((string)aluno_editado["Nome"] != Nome.Text) || ((string)aluno_editado["Código RFID"] != CodigoRFID) || ((bool)aluno_editado["Aluno_ativo"] != checkBox1.Checked) || ((string)aluno_editado["historico_medico"] != historico_med.Text) || ((string)aluno_editado["anotacoes"] != anotacoes.Text) || (data.Text != (string)aluno_editado["data_inscricao"]))
+            {
+                aluno_editado["historico"] += "aluno editado no dia" + DateTime.Now.ToShortDateString() + ":\n";
+                if ((string)aluno_editado["Nome"] != Nome.Text)
+                {
+                    aluno_editado["Nome"] = Nome.Text;
+                    aluno_editado["historico"] += "\tNome mudado de " + (string)aluno_editado["Nome"] + " para " + Nome.Text + "\n";
+                }
+                if ((string)aluno_editado["Código RFID"] != CodigoRFID)
+                {
+                    aluno_editado["Código RFID"] = CodigoRFID;
+                    aluno_editado["historico"] += "\tCartão atualizado\n";
+                }
+                if ((bool)aluno_editado["Aluno_ativo"] != checkBox1.Checked)
+                {
+                    aluno_editado["Aluno_ativo"] = checkBox1.Checked;
+                    if (checkBox1.Checked) aluno_editado["historico"] += "\tAluno reativado";
+                    else aluno_editado["historico"] += "\tAluno desativado";
+                }
+                if ((string)aluno_editado["historico_medico"] != historico_med.Text)
+                {
+                    aluno_editado["historico_medico"] = historico_med.Text;
+                    aluno_editado["historico"] += "\tHistórico médico atualizado\n";
+                }
+                if ((string)aluno_editado["anotacoes"] != anotacoes.Text)
+                {
+                    aluno_editado["anotacoes"] = anotacoes.Text;
+                    aluno_editado["historico"] += "\tanotações atualizadas\n";
+                }
+                if (data.Text != (string)aluno_editado["data_inscricao"])
+                {
+                    aluno_editado["data_inscricao"] = data.Text;
+                    aluno_editado["historico"] += "\tData de inscrição mudada de " + (string)aluno_editado["data_inscricao"] + " para " + data.Text + "\n";
+                }
+                this.Validate();
+                this.AlunosBindingSource.EndEdit();
+                this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Nome.Text = (string)aluno_editado["Nome"];
+            checkBox1.Checked = (bool)aluno_editado["aluno_ativo"];
+            CodigoRFID = (string)aluno_editado["Código RFID"];
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(cliente.makeRequest(Comandos./*readme*/jsonSim));
-
-            if (AlunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid) == index)
+            FormPegarID F = new FormPegarID(ref Trava);
+            F.ShowDialog(this);
+            if (F.fechar && F.encontrou != -1) return;
+            if (AlunosBindingSource.Find("Código RFID", F.rfiduid) == index)
             {
                 MessageBox.Show("esse já é o cartão desse aluno!", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (AlunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid) != -1)
+            else if (AlunosBindingSource.Find("Código RFID", F.rfiduid) != -1)
             {
                 MessageBox.Show("esse cartão já foi cadastrado para outro aluno!", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 MessageBox.Show("Novo cartão lido com sucesso!", "sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                CodigoRFID = retorno.variables.rfid_uid;
+                CodigoRFID = F.rfiduid;
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

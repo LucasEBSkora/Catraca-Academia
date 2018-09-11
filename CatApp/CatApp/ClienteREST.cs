@@ -19,26 +19,22 @@ namespace CatApp
     {
         ledOn,
         ledOff,
+        rejeitado,
+        abrir,
+        semcredito,
         readme,
         jsonSim //usado para desenvolvimento apenas
     }
-    public class ClienteREST
+    public static class ClienteREST
     {
-        public string endereco { get; set; }
-        public httpVerb httpMethod { get; set; }
+        private static string[] enderecos = { "https://my-json-server.typicode.com/LucasEBSkora/", "http://192.168.0.26/" };
 
-        public ClienteREST()
-        {
-            endereco = string.Empty;
-            httpMethod = httpVerb.GET;
-        }
-
-        public string makeRequest(Comandos comando)
+        public static string makeRequest(Comandos comando, int indice)
         {
             string strResponseValue = string.Empty;
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endereco + comando.ToString() + ((comando == Comandos.jsonSim) ? "/db" : string.Empty));
-            request.Method = httpMethod.ToString();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(enderecos[indice] + comando.ToString() + ((comando == Comandos.jsonSim) ? "/db" : string.Empty));
+            request.Method = httpVerb.GET.ToString();
 
             using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {

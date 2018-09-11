@@ -25,17 +25,14 @@ namespace CatApp
         /// <summary>
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
-        static ClienteREST cliente = new ClienteREST();
         [STAThread]
         static void Main()
         {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //cliente.endereco = "http://192.168.0.26/";
-            cliente.endereco = "https://my-json-server.typicode.com/LucasEBSkora/";
             //cliente.makeRequest(Comandos.ledOn);
-            Application.Run(new Form1(ref cliente));
+            Application.Run(new Form1());
         }
     }
 }
