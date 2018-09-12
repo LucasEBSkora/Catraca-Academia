@@ -20,7 +20,8 @@ namespace CatApp
         Database_alunosDataSet database_alunosDataSet;
         int index;
         DataRowView aluno_editado;
-        public FormAdicionarAulas(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index)
+        object TravaAtualizar;
+        public FormAdicionarAulas(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index, ref object travaAtualizar)
         {
             InitializeComponent();
             AlunosTableAdapterManager = a;
@@ -29,6 +30,7 @@ namespace CatApp
             index = row_index;
             aluno_editado = (DataRowView)AlunosBindingSource.List[index];
             TextBoxAulasTotais.Text = aluno_editado["Aulas pagas"].ToString();
+            TravaAtualizar = travaAtualizar;
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -69,9 +71,12 @@ namespace CatApp
             if (resultado)
             {
                 aluno_editado["aulas pagas"] = Int32.Parse(TextBoxAulasTotais.Text);
-                this.Validate();
-                this.AlunosBindingSource.EndEdit();
-                this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                lock (TravaAtualizar)
+                {
+                    this.Validate();
+                    this.AlunosBindingSource.EndEdit();
+                    this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                }
                 this.Close();
             }
         }

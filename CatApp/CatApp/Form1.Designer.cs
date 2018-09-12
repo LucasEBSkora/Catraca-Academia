@@ -30,34 +30,34 @@
         {
             this.components = new System.ComponentModel.Container();
             this.alunosDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horarios_aulas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ultima_entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.adicionar_aulas = new System.Windows.Forms.DataGridViewButtonColumn();
             this.editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deletar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.banabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alunosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.database_alunosDataSet = new CatApp.Database_alunosDataSet();
             this.botaoadicionar = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ts_mostraralunos = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.alunosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.database_alunosDataSet = new CatApp.Database_alunosDataSet();
             this.alunosTableAdapter = new CatApp.Database_alunosDataSetTableAdapters.AlunosTableAdapter();
             this.tableAdapterManager = new CatApp.Database_alunosDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.alunosDataGridView)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alunosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database_alunosDataSet)).BeginInit();
+            this.menuStrip1.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // alunosDataGridView
@@ -87,6 +87,38 @@
             this.alunosDataGridView.TabIndex = 1;
             this.alunosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.alunosDataGridView_CellContentClick);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Código";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 81;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Código RFID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Código RFID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            this.dataGridViewTextBoxColumn2.Width = 116;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Nome";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 74;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Aulas pagas";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Aulas pagas";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 106;
+            // 
             // horarios_aulas
             // 
             this.horarios_aulas.DataPropertyName = "horarios_aulas";
@@ -100,6 +132,15 @@
             this.ultima_entrada.HeaderText = "Última entrada";
             this.ultima_entrada.Name = "ultima_entrada";
             this.ultima_entrada.Width = 118;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Aluno_ativo";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Aluno ativo";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Visible = false;
+            this.dataGridViewCheckBoxColumn1.Width = 76;
             // 
             // adicionar_aulas
             // 
@@ -132,6 +173,16 @@
             this.banabToolStripMenuItem.Name = "banabToolStripMenuItem";
             this.banabToolStripMenuItem.Size = new System.Drawing.Size(120, 24);
             this.banabToolStripMenuItem.Text = "banab";
+            // 
+            // alunosBindingSource
+            // 
+            this.alunosBindingSource.DataMember = "Alunos";
+            this.alunosBindingSource.DataSource = this.database_alunosDataSet;
+            // 
+            // database_alunosDataSet
+            // 
+            this.database_alunosDataSet.DataSetName = "Database_alunosDataSet";
+            this.database_alunosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // botaoadicionar
             // 
@@ -185,57 +236,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Código";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 81;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Código RFID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Código RFID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            this.dataGridViewTextBoxColumn2.Width = 116;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Nome";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Nome";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 74;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Aulas pagas";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Aulas pagas";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 115;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Aluno_ativo";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Aluno ativo";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Visible = false;
-            this.dataGridViewCheckBoxColumn1.Width = 76;
-            // 
-            // alunosBindingSource
-            // 
-            this.alunosBindingSource.DataMember = "Alunos";
-            this.alunosBindingSource.DataSource = this.database_alunosDataSet;
-            // 
-            // database_alunosDataSet
-            // 
-            this.database_alunosDataSet.DataSetName = "Database_alunosDataSet";
-            this.database_alunosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // alunosTableAdapter
             // 
             this.alunosTableAdapter.ClearBeforeFill = true;
@@ -257,16 +257,16 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "CatApp V0.8";
+            this.Text = "CatApp V0.9";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.alunosDataGridView)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.alunosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database_alunosDataSet)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.alunosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database_alunosDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -26,7 +26,7 @@ namespace CatApp
         jsonSim //usado para desenvolvimento apenas
     }
     public static class ClienteREST
-    {
+    {                                       //porta de fora                                         //porta de dentro
         private static string[] enderecos = { "https://my-json-server.typicode.com/LucasEBSkora/", "http://192.168.0.26/" };
 
         public static string makeRequest(Comandos comando, int indice)

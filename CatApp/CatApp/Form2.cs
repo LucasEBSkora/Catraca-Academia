@@ -16,8 +16,8 @@ namespace CatApp
         private System.Windows.Forms.BindingSource AlunosBindingSource;
         Database_alunosDataSet database_alunosDataSet;
         public string CodigoRFID;
-        object Trava;
-        public FormAdicionarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, ref object trava)
+        object TravaAPI, TravaAtualizacao;
+        public FormAdicionarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, ref object travaAPI, ref object travaAtualizacao)
         {
 
             InitializeComponent();
@@ -25,8 +25,9 @@ namespace CatApp
             AlunosBindingSource = b;
             database_alunosDataSet = c;
             CodigoRFID = string.Empty;
-            Trava = trava;
             datainscricao.Text = DateTime.Now.ToShortDateString();
+            TravaAPI = travaAPI;
+            TravaAtualizacao = travaAtualizacao;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -78,6 +79,7 @@ namespace CatApp
             novo_aluno["anotacoes"] = anotacoes.Text;
             novo_aluno["data_inscricao"] = datainscricao.Text;
             novo_aluno["historico"] = "Aluno cadastrado no dia " + DateTime.Now.ToShortDateString() + "\n";
+            novo_aluno["ultima_entrada"] = string.Empty;
             this.Validate();
             this.AlunosBindingSource.EndEdit();
             this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
@@ -88,7 +90,7 @@ namespace CatApp
 
         private void buttonVerificar_Click(object sender, EventArgs e)
         {
-            FormPegarID F = new FormPegarID(ref Trava);
+            FormPegarID F = new FormPegarID(ref TravaAPI);
             F.ShowDialog(this);
             if (F.fechar && F.encontrou != -1) return;
             if (AlunosBindingSource.Find("Código RFID", F.rfiduid) != -1) {

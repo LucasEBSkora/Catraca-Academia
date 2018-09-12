@@ -19,8 +19,8 @@ namespace CatApp
         int index;
         DataRowView aluno_editado;
         public string CodigoRFID;
-        object Trava;
-        public FormEditarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index, ref object trava)
+        object TravaAPI, TravaAtualizacao;
+        public FormEditarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index, ref object travaAPI, ref object travaAtualizacao)
         {
             InitializeComponent();
             AlunosTableAdapterManager = a;
@@ -36,7 +36,8 @@ namespace CatApp
             historico_med.Text = (string)aluno_editado["historico_medico"];
             anotacoes.Text = (string)aluno_editado["anotacoes"];
             data.Text = (string)aluno_editado["data_inscricao"];
-            Trava = trava;
+            TravaAPI = travaAPI;
+            TravaAtualizacao = travaAtualizacao;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -75,9 +76,11 @@ namespace CatApp
                     aluno_editado["data_inscricao"] = data.Text;
                     aluno_editado["historico"] += "\tData de inscrição mudada de " + (string)aluno_editado["data_inscricao"] + " para " + data.Text + "\n";
                 }
-                this.Validate();
-                this.AlunosBindingSource.EndEdit();
-                this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                lock (TravaAtualizacao) {
+                    this.Validate();
+                    this.AlunosBindingSource.EndEdit();
+                    this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                }
             }
         }
 
@@ -90,7 +93,7 @@ namespace CatApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormPegarID F = new FormPegarID(ref Trava);
+            FormPegarID F = new FormPegarID(ref TravaAPI);
             F.ShowDialog(this);
             if (F.fechar && F.encontrou != -1) return;
             if (AlunosBindingSource.Find("Código RFID", F.rfiduid) == index)
