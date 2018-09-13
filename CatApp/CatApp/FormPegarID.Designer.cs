@@ -38,7 +38,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.ImageLocation = "C:\\Users\\skora\\OneDrive\\Catraca Academia\\CatApp\\spinner0.png";
+            this.pictureBox1.ImageLocation = "";
             this.pictureBox1.Location = new System.Drawing.Point(71, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(200, 200);
@@ -85,6 +85,7 @@
             this.Name = "FormPegarID";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Procurando cartão...";
+            this.Load += new System.EventHandler(this.FormPegarID_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();

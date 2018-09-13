@@ -33,6 +33,7 @@ namespace CatApp
             encontrou = 0;
             spinner_imagem = 0;
             fechar = false;
+            pictureBox1.Load("..\\..\\..\\spinner0.png");
             var thread = new Thread(() => procurar());
             thread.Start();
         }
@@ -52,9 +53,9 @@ namespace CatApp
                     }
                     else
                     {
-                        Thread.Sleep(100);
+                        Thread.Sleep(50);
                         spinner_imagem = ((spinner_imagem == 11) ? 0 : spinner_imagem + 1);
-                        pictureBox1.ImageLocation = "C:\\Users\\skora\\OneDrive\\Catraca Academia\\CatApp\\spinner" + spinner_imagem + ".png";
+                        pictureBox1.Load("..\\..\\..\\spinner" + spinner_imagem + ".png");
                         toolStripStatusLabel1.Text = "tentativa número " + encontrou++;
                     }
                 }
@@ -66,6 +67,11 @@ namespace CatApp
                    this.Close();
                 });
             }
+        }
+
+        private void FormPegarID_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
