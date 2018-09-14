@@ -17,8 +17,6 @@ namespace CatApp
     }
     public enum Comandos
     {
-        ledOn,
-        ledOff,
         rejeitado,
         abrir,
         semcredito,
@@ -27,13 +25,13 @@ namespace CatApp
     }
     public static class ClienteREST
     {                                       //porta de fora                                         //porta de dentro
-        private static string[] enderecos = { "https://my-json-server.typicode.com/LucasEBSkora/", "http://192.168.0.26/" };
+        private static string enderecos = "https://my-json-server.typicode.com/LucasEBSkora/" /*"http://192.168.0.59/"*/;
 
-        public static string makeRequest(Comandos comando, int indice)
+        public static string makeRequest(Comandos comando)
         {
             string strResponseValue = string.Empty;
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(enderecos[indice] + comando.ToString() + ((comando == Comandos.jsonSim) ? "/db" : string.Empty));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(enderecos + comando.ToString() + ((comando == Comandos.jsonSim) ? "/db" : string.Empty));
             request.Method = httpVerb.GET.ToString();
 
             using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())

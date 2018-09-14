@@ -42,7 +42,7 @@ namespace CatApp
             int porta = 0;
             while (!this.IsDisposed)
             {   
-                lock (TravaAPI) {retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ClienteREST.makeRequest(Comandos./*readme*/jsonSim, porta)); }
+                lock (TravaAPI) {retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ClienteREST.makeRequest(Comandos./*readme*/jsonSim)); }
                 if (retorno.variables.rfid_uid != "")
                 {
                     lock (TravaAtualizacao) {

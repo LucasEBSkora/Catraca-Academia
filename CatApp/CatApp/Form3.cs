@@ -58,8 +58,8 @@ namespace CatApp
                 if ((bool)aluno_editado["Aluno_ativo"] != checkBox1.Checked)
                 {
                     aluno_editado["Aluno_ativo"] = checkBox1.Checked;
-                    if (checkBox1.Checked) aluno_editado["historico"] += "\tAluno reativado";
-                    else aluno_editado["historico"] += "\tAluno desativado";
+                    if (checkBox1.Checked) aluno_editado["historico"] += "\tAluno reativado\n";
+                    else aluno_editado["historico"] += "\tAluno desativado\n";
                 }
                 if ((string)aluno_editado["historico_medico"] != historico_med.Text)
                 {

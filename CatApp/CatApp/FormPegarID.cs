@@ -44,7 +44,7 @@ namespace CatApp
             {
                 while (encontrou != -1 && !fechar && !IsDisposed)
                 {
-                    retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ClienteREST.makeRequest(Comandos./*readme*/jsonSim, 0));
+                    retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ClienteREST.makeRequest(Comandos./*readme*/jsonSim));
                     //MessageBox.Show(retorno.variables.rfid_uid);
                     if (retorno.variables.rfid_uid != "")
                     {
