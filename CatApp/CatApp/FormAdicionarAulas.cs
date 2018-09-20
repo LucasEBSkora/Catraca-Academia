@@ -18,15 +18,17 @@ namespace CatApp
         private Database_alunosDataSetTableAdapters.TableAdapterManager AlunosTableAdapterManager;
         private System.Windows.Forms.BindingSource AlunosBindingSource;
         Database_alunosDataSet database_alunosDataSet;
+        Database_alunosDataSetTableAdapters.AlunosTableAdapter AlunosTableAdapter;
         int index;
         DataRowView aluno_editado;
         object TravaAtualizar;
-        public FormAdicionarAulas(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, int row_index, ref object travaAtualizar)
+        public FormAdicionarAulas(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, ref Database_alunosDataSetTableAdapters.AlunosTableAdapter d, int row_index, ref object travaAtualizar)
         {
             InitializeComponent();
             AlunosTableAdapterManager = a;
             AlunosBindingSource = b;
             database_alunosDataSet = c;
+            AlunosTableAdapter = d;
             index = row_index;
             aluno_editado = (DataRowView)AlunosBindingSource.List[index];
             TextBoxAulasTotais.Text = aluno_editado["Aulas pagas"].ToString();
@@ -75,7 +77,10 @@ namespace CatApp
                 {
                     this.Validate();
                     this.AlunosBindingSource.EndEdit();
+                    //
+                    database_alunosDataSet.AcceptChanges();
                     this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                    AlunosTableAdapter.Fill(database_alunosDataSet.Alunos);
                 }
                 this.Close();
             }

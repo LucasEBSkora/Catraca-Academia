@@ -15,15 +15,17 @@ namespace CatApp
         private Database_alunosDataSetTableAdapters.TableAdapterManager AlunosTableAdapterManager;
         private System.Windows.Forms.BindingSource AlunosBindingSource;
         Database_alunosDataSet database_alunosDataSet;
+        Database_alunosDataSetTableAdapters.AlunosTableAdapter AlunosTableAdapter;
         public string CodigoRFID;
         object TravaAPI, TravaAtualizacao;
-        public FormAdicionarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, ref object travaAPI, ref object travaAtualizacao)
+        public FormAdicionarAluno(ref Database_alunosDataSetTableAdapters.TableAdapterManager a, ref System.Windows.Forms.BindingSource b, ref Database_alunosDataSet c, ref Database_alunosDataSetTableAdapters.AlunosTableAdapter d, ref object travaAPI, ref object travaAtualizacao)
         {
 
             InitializeComponent();
             AlunosTableAdapterManager = a;
             AlunosBindingSource = b;
             database_alunosDataSet = c;
+            AlunosTableAdapter = d;
             CodigoRFID = string.Empty;
             datainscricao.Text = DateTime.Now.ToShortDateString();
             TravaAPI = travaAPI;
@@ -69,21 +71,27 @@ namespace CatApp
                 MessageBox.Show("há algo errado com a formatação do número de aulas! Talvez haja um espaço sobrando entre os caracteres.", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DataRowView novo_aluno = (DataRowView)AlunosBindingSource.AddNew();
-            novo_aluno["Nome"] = textBoxNome.Text;
-            novo_aluno["Código RFID"] = CodigoRFID;
-            novo_aluno["Aulas pagas"] = resultado;
-            novo_aluno["Aluno_ativo"] = checkBoxAtivo.Checked;
-            novo_aluno["horarios_aulas"] = horarios.Text;
-            novo_aluno["historico_medico"] = historico_medico.Text;
-            novo_aluno["anotacoes"] = anotacoes.Text;
-            novo_aluno["data_inscricao"] = datainscricao.Text;
-            novo_aluno["historico"] = "Aluno cadastrado no dia " + DateTime.Now.ToShortDateString() + "\n";
-            novo_aluno["ultima_entrada"] = string.Empty;
-            this.Validate();
-            this.AlunosBindingSource.EndEdit();
-            this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
-            this.Close();
+            lock (TravaAtualizacao)
+            {
+                DataRowView novo_aluno = (DataRowView)AlunosBindingSource.AddNew();
+                novo_aluno["Nome"] = textBoxNome.Text;
+                novo_aluno["Código RFID"] = CodigoRFID;
+                novo_aluno["Aulas pagas"] = resultado;
+                novo_aluno["Aluno_ativo"] = checkBoxAtivo.Checked;
+                novo_aluno["horarios_aulas"] = horarios.Text;
+                novo_aluno["historico_medico"] = historico_medico.Text;
+                novo_aluno["anotacoes"] = anotacoes.Text;
+                novo_aluno["data_inscricao"] = datainscricao.Text;
+                novo_aluno["historico"] = "Aluno cadastrado no dia " + DateTime.Now.ToShortDateString() + "\n";
+                novo_aluno["ultima_entrada"] = string.Empty;
+                this.Validate();
+                this.AlunosBindingSource.EndEdit();
+                //database_alunosDataSet.AcceptChanges();
+                this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                //AlunosTableAdapter.Fill(database_alunosDataSet.Alunos);
+                this.Close();
+            }
+
             
         }
       
