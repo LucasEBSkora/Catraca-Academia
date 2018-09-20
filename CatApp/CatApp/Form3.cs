@@ -38,6 +38,7 @@ namespace CatApp
             historico_med.Text = (string)aluno_editado["historico_medico"];
             anotacoes.Text = (string)aluno_editado["anotacoes"];
             data.Text = (string)aluno_editado["data_inscricao"];
+            horarios.Text = (string)aluno_editado["horarios_aulas"];
             TravaAPI = travaAPI;
             TravaAtualizacao = travaAtualizacao;
         }
@@ -46,7 +47,7 @@ namespace CatApp
         {
             lock (TravaAtualizacao)
             {
-                if (((string)aluno_editado["Nome"] != Nome.Text) || ((string)aluno_editado["Código RFID"] != CodigoRFID) || ((bool)aluno_editado["Aluno_ativo"] != checkBox1.Checked) || ((string)aluno_editado["historico_medico"] != historico_med.Text) || ((string)aluno_editado["anotacoes"] != anotacoes.Text) || (data.Text != (string)aluno_editado["data_inscricao"]))
+                if (((string)aluno_editado["Nome"] != Nome.Text) || ((string)aluno_editado["Código RFID"] != CodigoRFID) || ((bool)aluno_editado["Aluno_ativo"] != checkBox1.Checked) || ((string)aluno_editado["historico_medico"] != historico_med.Text) || ((string)aluno_editado["anotacoes"] != anotacoes.Text) || (data.Text != (string)aluno_editado["data_inscricao"]) || (horarios.Text != (string)aluno_editado["horarios_aulas"]))
                 {
                     aluno_editado["historico"] += "aluno editado no dia" + DateTime.Now.ToShortDateString() + ":\n";
                     if ((string)aluno_editado["Nome"] != Nome.Text)
@@ -80,12 +81,17 @@ namespace CatApp
                         aluno_editado["data_inscricao"] = data.Text;
                         aluno_editado["historico"] += "\tData de inscrição mudada de " + (string)aluno_editado["data_inscricao"] + " para " + data.Text + "\n";
                     }
+                    if (horarios.Text != (string)aluno_editado["horarios_aulas"])
+                    {
+                        aluno_editado["horarios_aulas"] = horarios.Text;
+                        aluno_editado["historico"] += "\tHorários das aulas mudados de " + (string)aluno_editado["horarios_aulas"] + " para " + horarios.Text + "\n";
+                    }
+                    
                     this.Validate();
                     this.AlunosBindingSource.EndEdit();
-                    //database_alunosDataSet.AcceptChanges();
                     this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
-                    AlunosTableAdapter.Fill(database_alunosDataSet.Alunos);
                 }
+                MessageBox.Show("Atualização feita com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             
         }

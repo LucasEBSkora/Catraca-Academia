@@ -86,9 +86,8 @@ namespace CatApp
                 novo_aluno["ultima_entrada"] = string.Empty;
                 this.Validate();
                 this.AlunosBindingSource.EndEdit();
-                //database_alunosDataSet.AcceptChanges();
                 this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
-                //AlunosTableAdapter.Fill(database_alunosDataSet.Alunos);
+                AlunosTableAdapter.Fill(database_alunosDataSet.Alunos);
                 this.Close();
             }
 
@@ -109,6 +108,11 @@ namespace CatApp
                 MessageBox.Show("Novo cartão lido com sucesso!","sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CodigoRFID = F.rfiduid;
             }   
+        }
+
+        private void horarios_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void FormAdicionarAluno_Load(object sender, EventArgs e)

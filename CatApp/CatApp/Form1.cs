@@ -11,7 +11,8 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
-
+using System.Configuration;
+using System.Collections.Specialized;
 namespace CatApp
 {
     public partial class Form1 : Form
@@ -27,21 +28,24 @@ namespace CatApp
         int IndiceAluno;
         void MetodoAtualizarLista()
         {
-           
-            DataRowView aluno = (DataRowView)alunosBindingSource.List[IndiceAluno];
-            if (DescontarAula)
-            {
-                aluno["ultima_entrada"] = DateTime.Now.ToShortDateString();
-                aluno["Aulas pagas"] = (int)aluno["Aulas pagas"] - 1;
+            lock (TravaAtualizacao) {
+                DataRowView aluno = (DataRowView)alunosBindingSource.List[IndiceAluno];
+                if (DescontarAula)
+                {
+                    aluno["ultima_entrada"] = DateTime.Now.ToShortDateString();
+                    aluno["Aulas pagas"] = (int)aluno["Aulas pagas"] - 1;
+                }
+                aluno["historico"] += AdicionarAoHistorico;
+                this.Validate();
+                this.alunosBindingSource.EndEdit();
+                try
+                {
+
+                    this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
+                }
+                catch { }
+                //alunosTableAdapter.Fill(database_alunosDataSet.Alunos);
             }
-            aluno["historico"] += AdicionarAoHistorico;
-            this.Validate();
-            this.alunosBindingSource.EndEdit();
-            try {
-                
-                this.tableAdapterManager.UpdateAll(this.database_alunosDataSet); }
-            catch { }
-            //alunosTableAdapter.Fill(database_alunosDataSet.Alunos);
             IndiceAluno = -1;
             DescontarAula = false;
             AdicionarAoHistorico = string.Empty;
@@ -72,8 +76,6 @@ namespace CatApp
                     {
 
                         //tempDataSet = database_alunosDataSet;
-                        lock (TravaAtualizacao)
-                        {
                             IndiceAluno = alunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid);
                             if (IndiceAluno == -1)
                             {
@@ -111,7 +113,6 @@ namespace CatApp
                                 }
 
                             }
-                        }
                     }
                     Thread.Sleep(200); //de quanto em quanto tempo o programa deve verificar a porta?
                 }
@@ -146,13 +147,11 @@ namespace CatApp
                     {
                         lock (TravaAtualizacao)
                         {
-                            //database_alunosDataSet.AcceptChanges();
                             alunosBindingSource.RemoveAt(e.RowIndex);
                             this.Validate();
                             this.alunosBindingSource.EndEdit();
                             this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
-                            //database_alunosDataSet.AcceptChanges();
-                            alunosTableAdapter.Fill(database_alunosDataSet.Alunos);
+                            //alunosTableAdapter.Fill(database_alunosDataSet.Alunos);
                         }
                     }
                     break;
@@ -184,5 +183,14 @@ namespace CatApp
             }
         }
 
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -36,6 +36,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ts_mostraralunos = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
+            this.editarHorárioDeFechamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox3 = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.alunosTableAdapter = new CatApp.Database_alunosDataSetTableAdapters.AlunosTableAdapter();
@@ -117,7 +123,10 @@
             // opçõesToolStripMenuItem
             // 
             this.opçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ts_mostraralunos});
+            this.ts_mostraralunos,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.editarHorárioDeFechamentoToolStripMenuItem});
             this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
             this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.opçõesToolStripMenuItem.Text = "Opções";
@@ -125,9 +134,50 @@
             // ts_mostraralunos
             // 
             this.ts_mostraralunos.Name = "ts_mostraralunos";
-            this.ts_mostraralunos.Size = new System.Drawing.Size(269, 26);
+            this.ts_mostraralunos.Size = new System.Drawing.Size(284, 26);
             this.ts_mostraralunos.Text = "Escondendo Alunos Inativos";
             this.ts_mostraralunos.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox1});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(284, 26);
+            this.toolStripMenuItem1.Text = "IP do leitor";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click_1);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 27);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox2});
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(284, 26);
+            this.toolStripMenuItem2.Text = "Editar Horário de Abertura";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripTextBox2
+            // 
+            this.toolStripTextBox2.Name = "toolStripTextBox2";
+            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 27);
+            // 
+            // editarHorárioDeFechamentoToolStripMenuItem
+            // 
+            this.editarHorárioDeFechamentoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox3});
+            this.editarHorárioDeFechamentoToolStripMenuItem.Name = "editarHorárioDeFechamentoToolStripMenuItem";
+            this.editarHorárioDeFechamentoToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
+            this.editarHorárioDeFechamentoToolStripMenuItem.Text = "Editar Horário de Fechamento";
+            // 
+            // toolStripTextBox3
+            // 
+            this.toolStripTextBox3.Name = "toolStripTextBox3";
+            this.toolStripTextBox3.Size = new System.Drawing.Size(100, 27);
             // 
             // statusStrip
             // 
@@ -160,6 +210,7 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Código";
             this.dataGridViewTextBoxColumn1.HeaderText = "Código";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
             this.dataGridViewTextBoxColumn1.Width = 81;
             // 
             // dataGridViewTextBoxColumn2
@@ -265,6 +316,12 @@
         private System.Windows.Forms.ToolStripMenuItem ts_mostraralunos;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
+        private System.Windows.Forms.ToolStripMenuItem editarHorárioDeFechamentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

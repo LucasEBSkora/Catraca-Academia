@@ -71,7 +71,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(997, 443);
+            this.groupBox1.Size = new System.Drawing.Size(1219, 443);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -108,7 +108,7 @@
             this.historico.Location = new System.Drawing.Point(629, 163);
             this.historico.Name = "historico";
             this.historico.ReadOnly = true;
-            this.historico.Size = new System.Drawing.Size(362, 274);
+            this.historico.Size = new System.Drawing.Size(584, 274);
             this.historico.TabIndex = 25;
             this.historico.Text = "";
             // 
@@ -176,7 +176,7 @@
             this.data.Location = new System.Drawing.Point(389, 51);
             this.data.Mask = "00/00/0000";
             this.data.Name = "data";
-            this.data.Size = new System.Drawing.Size(74, 22);
+            this.data.Size = new System.Drawing.Size(102, 22);
             this.data.TabIndex = 6;
             this.data.ValidatingType = typeof(System.DateTime);
             // 
@@ -241,7 +241,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1021, 532);
+            this.ClientSize = new System.Drawing.Size(1243, 550);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);

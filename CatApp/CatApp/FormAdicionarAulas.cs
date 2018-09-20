@@ -33,6 +33,7 @@ namespace CatApp
             aluno_editado = (DataRowView)AlunosBindingSource.List[index];
             TextBoxAulasTotais.Text = aluno_editado["Aulas pagas"].ToString();
             TravaAtualizar = travaAtualizar;
+           // MessageBox.Show(aluno_editado["Código"].ToString());
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -77,10 +78,7 @@ namespace CatApp
                 {
                     this.Validate();
                     this.AlunosBindingSource.EndEdit();
-                    //
-                    database_alunosDataSet.AcceptChanges();
                     this.AlunosTableAdapterManager.UpdateAll(this.database_alunosDataSet);
-                    AlunosTableAdapter.Fill(database_alunosDataSet.Alunos);
                 }
                 this.Close();
             }

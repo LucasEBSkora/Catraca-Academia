@@ -154,6 +154,7 @@
             this.horarios.Name = "horarios";
             this.horarios.Size = new System.Drawing.Size(208, 22);
             this.horarios.TabIndex = 18;
+            this.horarios.TextChanged += new System.EventHandler(this.horarios_TextChanged);
             // 
             // label6
             // 
