@@ -21,36 +21,43 @@ namespace CatApp
         abrir,
         semcredito,
         readme,
+        go_home,
         jsonSim //usado para desenvolvimento apenas
     }
     public static class ClienteREST
-    {                                       //porta de fora                                         //porta de dentro
-        private static string enderecos = "https://my-json-server.typicode.com/LucasEBSkora/" /*"http://192.168.0.59/"*/;
+    {
+        public static string endereco = "https://my-json-server.typicode.com/LucasEBSkora/" /*"http://192.168.0.59/"*/;
 
         public static string makeRequest(Comandos comando)
         {
             string strResponseValue = string.Empty;
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(enderecos + comando.ToString() + ((comando == Comandos.jsonSim) ? "/db" : string.Empty));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endereco + comando.ToString() + ((comando == Comandos.jsonSim) ? "/db" : string.Empty));
             request.Method = httpVerb.GET.ToString();
-
-            using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            try
             {
-                if (response.StatusCode != HttpStatusCode.OK)
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    throw new ApplicationException("error code:" + response.StatusCode.ToString());
-                }
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    if(responseStream != null)
+                    if (response.StatusCode != HttpStatusCode.OK)
                     {
-                        using(StreamReader reader = new StreamReader(responseStream))
+                        throw new ApplicationException("error code:" + response.StatusCode.ToString());
+                    }
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        if (responseStream != null)
                         {
-                            strResponseValue = reader.ReadToEnd();
+                            using (StreamReader reader = new StreamReader(responseStream))
+                            {
+                                strResponseValue = reader.ReadToEnd();
+                            }
                         }
                     }
                 }
-            } 
+            }
+            catch
+            {
+                strResponseValue = "falhou";
+            }
             return strResponseValue;
         }
     }

@@ -14,9 +14,9 @@ using System.Threading;
 using System.Configuration;
 using System.Collections.Specialized;
 namespace CatApp
-{
+{   
     public partial class Form1 : Form
-    {
+    {   
         bool mostrar_alunos_inativos = false;
         static object TravaAPI = new object();
         static object TravaAtualizacao = new object();
@@ -68,56 +68,76 @@ namespace CatApp
             retornoRFID retorno;
             while (!this.IsDisposed)
             {
-                try
+              /*  if( DateTime.Now.TimeOfDay < config.hora_abre.TimeOfDay || DateTime.Now.TimeOfDay > config.hora_fecha.TimeOfDay)
                 {
-                    lock (TravaAPI) { retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ClienteREST.makeRequest(Comandos./*readme*/jsonSim)); }
+                    //if (ClienteREST.makeRequest(Comandos.go_home) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                    Thread.Sleep(5000);
+                }
+                else
+                {*/
 
-                    if (retorno.variables.rfid_uid != "")
+                    try
                     {
-
-                        //tempDataSet = database_alunosDataSet;
-                            IndiceAluno = alunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid);
-                            if (IndiceAluno == -1)
+                        string ret = "falhou";
+                        lock (TravaAPI) {
+                            ret = ClienteREST.makeRequest(Comandos./*readme*/jsonSim);
+                        }
+                        if (ret == "falhou")
+                        {
+                            toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                            //continue;
+                        }
+                        else
+                        {
+                            toolStripStatusLabel1.Text = "";
+                            retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ret);
+                            if (retorno.variables.rfid_uid != "")
                             {
-                                //ClienteREST.makeRequest(Comandos.rejeitado, 0);
-                            }
-                            else
-                            {
 
-                                DataRowView aluno = (DataRowView)alunosBindingSource.List[IndiceAluno];
-                                if ((string)aluno["ultima_entrada"] == DateTime.Now.ToShortDateString())
+                                IndiceAluno = alunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid);
+                                if (IndiceAluno == -1)
                                 {
-                                    //ClienteREST.makeRequest(Comandos.abrir, porta);
-                                    AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
-                                    this.Invoke(atualizar);
-
+                                    //if (ClienteREST.makeRequest(Comandos.rejeitado) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
                                 }
                                 else
                                 {
-                                    int Num_aulas = (int)aluno["Aulas pagas"];
-                                    if (Num_aulas == 0)
+
+                                    DataRowView aluno = (DataRowView)alunosBindingSource.List[IndiceAluno];
+                                    if ((string)aluno["ultima_entrada"] == DateTime.Now.ToShortDateString())
                                     {
-                                        //ClienteREST.makeRequest(Comandos.semcredito, porta);
-                                        toolStripStatusLabel1.Text = "Aluno " + (string)aluno["nome"] + " tentou entrar às " + DateTime.Now.ToShortTimeString() + ", mas suas aulas pagas acabaram";
+                                        //if (ClienteREST.makeRequest(Comandos.abrir) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                                        AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
+                                        this.Invoke(atualizar);
+
                                     }
                                     else
                                     {
-                                        //ClienteREST.makeRequest(Comandos.abrir, porta);
-                                        toolStripStatusLabel1.Text = "Aluno " + (string)aluno["nome"] + " entrou às " + DateTime.Now.ToShortDateString();
-                                        aluno["ultima_entrada"] = DateTime.Now.ToShortDateString();
-                                        AdicionarAoHistorico += "Aluno " + (string)aluno["nome"] + " entrou às " + DateTime.Now.ToShortTimeString() + "\n";
-                                        AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
-                                        DescontarAula = true;
-                                        this.Invoke(atualizar);
+                                        int Num_aulas = (int)aluno["Aulas pagas"];
+                                        if (Num_aulas == 0)
+                                        {
+                                            //if (ClienteREST.makeRequest(Comandos.semcredito) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                                            toolStripStatusLabel1.Text = "Aluno " + (string)aluno["nome"] + " tentou entrar às " + DateTime.Now.ToShortTimeString() + ", mas suas aulas pagas acabaram";
+                                        }
+                                        else
+                                        {
+                                            //if (ClienteREST.makeRequest(Comandos.abrir) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                                            toolStripStatusLabel1.Text = "Aluno " + (string)aluno["nome"] + " entrou às " + DateTime.Now.ToShortDateString();
+                                            aluno["ultima_entrada"] = DateTime.Now.ToShortDateString();
+                                            AdicionarAoHistorico += "Aluno " + (string)aluno["nome"] + " entrou às " + DateTime.Now.ToShortTimeString() + "\n";
+                                            AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
+                                            DescontarAula = true;
+                                            this.Invoke(atualizar);
+                                        }
                                     }
-                                }
 
+                                }
                             }
+                        }
+                        Thread.Sleep(200); //de quanto em quanto tempo o programa deve verificar a porta?
                     }
-                    Thread.Sleep(200); //de quanto em quanto tempo o programa deve verificar a porta?
+                    catch { }
                 }
-                catch { }
-            }
+          //  }
         
         }
 
@@ -151,7 +171,6 @@ namespace CatApp
                             this.Validate();
                             this.alunosBindingSource.EndEdit();
                             this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
-                            //alunosTableAdapter.Fill(database_alunosDataSet.Alunos);
                         }
                     }
                     break;
@@ -183,14 +202,11 @@ namespace CatApp
             }
         }
 
-        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+
+        private void configuraçõesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
+            Configurações fc = new Configurações();
+            fc.ShowDialog();
         }
     }
 }

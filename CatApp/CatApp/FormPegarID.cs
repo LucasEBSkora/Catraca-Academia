@@ -40,24 +40,33 @@ namespace CatApp
 
         private void procurar()
         {
+
             lock (trava)
             {
                 while (encontrou != -1 && !fechar && !IsDisposed)
                 {
-                    retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ClienteREST.makeRequest(Comandos./*readme*/jsonSim));
-                    //MessageBox.Show(retorno.variables.rfid_uid);
-                    if (retorno.variables.rfid_uid != "")
+                    string ret = ClienteREST.makeRequest(Comandos./*readme*/jsonSim);
+                    if (ret == "falhou")
                     {
-                        encontrou = -1;
-                        rfiduid = retorno.variables.rfid_uid;
+                        toolStripStatusLabel1.Text = "Erro na comunicação com a porta!";
                     }
                     else
                     {
-                        Thread.Sleep(50);
-                        spinner_imagem = ((spinner_imagem == 11) ? 0 : spinner_imagem + 1);
-                        pictureBox1.Load("..\\..\\..\\spinner" + spinner_imagem + ".png");
-                        toolStripStatusLabel1.Text = "tentativa número " + encontrou++;
-                    }
+                        retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ret);
+
+                        if (retorno.variables.rfid_uid != "")
+                        {
+                            encontrou = -1;
+                            rfiduid = retorno.variables.rfid_uid;
+                        }
+                        else
+                        {
+                            Thread.Sleep(50);
+                            spinner_imagem = ((spinner_imagem == 11) ? 0 : spinner_imagem + 1);
+                            pictureBox1.Load("..\\..\\..\\spinner" + spinner_imagem + ".png");
+                            toolStripStatusLabel1.Text = "tentativa número " + encontrou++;
+                        }
+                    } 
                 }
             }
             if (!IsDisposed)

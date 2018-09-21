@@ -35,6 +35,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -52,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteREST.cs" />
+    <Compile Include="configuracoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="configuracoes.Designer.cs">
+      <DependentUpon>configuracoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database_alunosDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +96,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="configuracoes.resx">
+      <DependentUpon>configuracoes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

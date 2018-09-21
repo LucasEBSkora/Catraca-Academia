@@ -20,6 +20,12 @@ namespace CatApp
         public string hardware { get; set; }
         public string connected { get; set; }
     }
+    static class config {
+        static public string endereco { get; set; }
+        static public DateTime hora_abre { get; set; }
+        static public DateTime hora_fecha { get; set; }
+
+    }
 
     static class Program
     {
@@ -28,8 +34,11 @@ namespace CatApp
         /// </summary>
         [STAThread]
         static void Main()
-        {
-
+        {   
+            config.endereco = ConfigurationManager.AppSettings.Get("IP");
+            config.hora_abre = DateTime.Parse(ConfigurationManager.AppSettings.Get("abre"));
+            config.hora_fecha = DateTime.Parse(ConfigurationManager.AppSettings.Get("fecha"));
+            ClienteREST.endereco = config.endereco;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //cliente.makeRequest(Comandos.ledOn);
