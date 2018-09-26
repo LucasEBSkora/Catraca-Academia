@@ -45,7 +45,7 @@ namespace CatApp
             {
                 while (encontrou != -1 && !fechar && !IsDisposed)
                 {
-                    string ret = ClienteREST.makeRequest(Comandos./*readme*/jsonSim);
+                    string ret = ClienteREST.makeRequest(Comandos.readme);
                     if (ret == "falhou")
                     {
                         toolStripStatusLabel1.Text = "Erro na comunicação com a porta!";

@@ -82,6 +82,8 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormPegarID";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Procurando cartão...";

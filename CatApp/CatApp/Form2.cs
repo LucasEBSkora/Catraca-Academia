@@ -47,7 +47,7 @@ namespace CatApp
         {
 
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBoxNome.Text == "")
@@ -57,7 +57,7 @@ namespace CatApp
             }
             if (TextBoxAulas.Text == "")
             {
-                MessageBox.Show("Insira um número!", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Insira um número de aulas!", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (CodigoRFID == "")
@@ -71,6 +71,11 @@ namespace CatApp
                 MessageBox.Show("há algo errado com a formatação do número de aulas! Talvez haja um espaço sobrando entre os caracteres.", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (comboBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecione o gênero do(a) aluno(a)!", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             lock (TravaAtualizacao)
             {
                 DataRowView novo_aluno = (DataRowView)AlunosBindingSource.AddNew();
@@ -79,7 +84,12 @@ namespace CatApp
                 novo_aluno["Aulas pagas"] = resultado;
                 novo_aluno["Aluno_ativo"] = checkBoxAtivo.Checked;
                 novo_aluno["horarios_aulas"] = horarios.Text;
+                novo_aluno["Gênero"] = valores.genero[comboBox1.SelectedIndex];
                 novo_aluno["historico_medico"] = historico_medico.Text;
+                novo_aluno["Telefone"] = telefone.Text;
+                novo_aluno["Email"] = email.Text;
+                novo_aluno["Histórico de aulas"] = historicoAulas.Text;
+                novo_aluno["Registro de medições"] = medicoes.Text;
                 novo_aluno["anotacoes"] = anotacoes.Text;
                 novo_aluno["data_inscricao"] = datainscricao.Text;
                 novo_aluno["historico"] = "Aluno cadastrado no dia " + DateTime.Now.ToShortDateString() + "\n";
@@ -111,6 +121,40 @@ namespace CatApp
         }
 
         private void horarios_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxAtivo_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonVerificar.Enabled = checkBoxAtivo.Checked;
+            if (checkBoxAtivo.Checked) return;
+            else
+            {
+                CodigoRFID = "0";
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxNome_TextChanged(object sender, EventArgs e)
         {
 
         }

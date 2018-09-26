@@ -8,6 +8,7 @@ using System.Net;
 
 namespace CatApp
 {
+
     public enum httpVerb
     {
         GET,
@@ -21,18 +22,18 @@ namespace CatApp
         abrir,
         semcredito,
         readme,
-        go_home,
-        jsonSim //usado para desenvolvimento apenas
+        go_home
     }
     public static class ClienteREST
     {
-        public static string endereco = "https://my-json-server.typicode.com/LucasEBSkora/" /*"http://192.168.0.59/"*/;
+        private const bool ModoDebug = true;
+        public static string endereco;
 
-        public static string makeRequest(Comandos comando)
+        public static string makeRequest(Comandos comando, int AulasPagasRestantes = 0)
         {
             string strResponseValue = string.Empty;
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endereco + comando.ToString() + ((comando == Comandos.jsonSim) ? "/db" : string.Empty));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endereco + ((ModoDebug) ? "jsonSim/db" : comando.ToString()) + ((comando == Comandos.abrir) ? ("?command=" + AulasPagasRestantes) : String.Empty));
             request.Method = httpVerb.GET.ToString();
             try
             {

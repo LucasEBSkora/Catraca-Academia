@@ -32,15 +32,15 @@ namespace CatApp
                 DataRowView aluno = (DataRowView)alunosBindingSource.List[IndiceAluno];
                 if (DescontarAula)
                 {
-                    aluno["ultima_entrada"] = DateTime.Now.ToShortDateString();
-                    aluno["Aulas pagas"] = (int)aluno["Aulas pagas"] - 1;
+                    aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
+                    aluno[colunas.AulasPagas] = (int)aluno[colunas.AulasPagas] - 1;
                 }
-                aluno["historico"] += AdicionarAoHistorico;
+                aluno[colunas.Historico] += AdicionarAoHistorico;
                 this.Validate();
                 this.alunosBindingSource.EndEdit();
                 try
                 {
-
+                    
                     this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
                 }
                 catch { }
@@ -53,7 +53,7 @@ namespace CatApp
         public Form1()
         {
             InitializeComponent();
-            alunosBindingSource.Filter = "Aluno_ativo= true";
+            alunosBindingSource.Filter = colunas.AlunoAtivo + "= true";
             atualizar = new atualizaLista(MetodoAtualizarLista);
             tempDataSet = database_alunosDataSet;
             var thread = new Thread(checar_porta);
@@ -61,6 +61,7 @@ namespace CatApp
             DescontarAula = false;
             AdicionarAoHistorico = string.Empty;
             IndiceAluno = -1;
+            alunosDataGridView.Size = new Size(Screen.PrimaryScreen.Bounds.Width - 30, Screen.PrimaryScreen.Bounds.Height - 150);
         }
 
          void checar_porta()
@@ -68,68 +69,69 @@ namespace CatApp
             retornoRFID retorno;
             while (!this.IsDisposed)
             {
-              /*  if( DateTime.Now.TimeOfDay < config.hora_abre.TimeOfDay || DateTime.Now.TimeOfDay > config.hora_fecha.TimeOfDay)
+                if( DateTime.Now.TimeOfDay <= config.hora_abre.TimeOfDay || DateTime.Now.TimeOfDay >= config.hora_fecha.TimeOfDay)
                 {
-                    //if (ClienteREST.makeRequest(Comandos.go_home) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                    if (ClienteREST.makeRequest(Comandos.go_home) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
                     Thread.Sleep(5000);
                 }
                 else
-                {*/
+                {
 
                     try
                     {
                         string ret = "falhou";
                         lock (TravaAPI) {
-                            ret = ClienteREST.makeRequest(Comandos./*readme*/jsonSim);
+                            ret = ClienteREST.makeRequest(Comandos.readme);
                         }
                         if (ret == "falhou")
                         {
                             toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
-                            //continue;
                         }
                         else
                         {
-                            toolStripStatusLabel1.Text = "";
+                            if (toolStripStatusLabel1.Text == "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.") toolStripStatusLabel1.Text = "";
                             retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ret);
                             if (retorno.variables.rfid_uid != "")
                             {
 
-                                IndiceAluno = alunosBindingSource.Find("Código RFID", retorno.variables.rfid_uid);
+                                IndiceAluno = alunosBindingSource.Find(colunas.CodigoRFID, retorno.variables.rfid_uid);
                                 if (IndiceAluno == -1)
                                 {
-                                    //if (ClienteREST.makeRequest(Comandos.rejeitado) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                                    if (ClienteREST.makeRequest(Comandos.rejeitado) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
                                 }
                                 else
                                 {
 
                                     DataRowView aluno = (DataRowView)alunosBindingSource.List[IndiceAluno];
-                                    if ((string)aluno["ultima_entrada"] == DateTime.Now.ToShortDateString())
+                                    if((bool)aluno[colunas.AlunoAtivo])
                                     {
-                                        //if (ClienteREST.makeRequest(Comandos.abrir) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
-                                        AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
-                                        this.Invoke(atualizar);
-
-                                    }
-                                    else
-                                    {
-                                        int Num_aulas = (int)aluno["Aulas pagas"];
-                                        if (Num_aulas == 0)
+                                        if ((string)aluno[colunas.UltimaEntrada] == DateTime.Now.ToShortDateString())
                                         {
-                                            //if (ClienteREST.makeRequest(Comandos.semcredito) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
-                                            toolStripStatusLabel1.Text = "Aluno " + (string)aluno["nome"] + " tentou entrar às " + DateTime.Now.ToShortTimeString() + ", mas suas aulas pagas acabaram";
+                                            if (ClienteREST.makeRequest(Comandos.abrir, (int)aluno[colunas.AulasPagas]) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                                            AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
+                                            this.Invoke(atualizar);
+
                                         }
                                         else
                                         {
-                                            //if (ClienteREST.makeRequest(Comandos.abrir) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
-                                            toolStripStatusLabel1.Text = "Aluno " + (string)aluno["nome"] + " entrou às " + DateTime.Now.ToShortDateString();
-                                            aluno["ultima_entrada"] = DateTime.Now.ToShortDateString();
-                                            AdicionarAoHistorico += "Aluno " + (string)aluno["nome"] + " entrou às " + DateTime.Now.ToShortTimeString() + "\n";
-                                            AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
-                                            DescontarAula = true;
-                                            this.Invoke(atualizar);
+                                            int Num_aulas = (int)aluno[colunas.AulasPagas];
+                                            if (Num_aulas == 0)
+                                            {
+                                                if (ClienteREST.makeRequest(Comandos.semcredito) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                                                toolStripStatusLabel1.Text = "Aluno " + (string)aluno[colunas.Nome] + " tentou entrar às " + DateTime.Now.ToShortTimeString() + ", mas suas aulas pagas acabaram";
+                                            }
+                                            else
+                                            {
+                                                if (ClienteREST.makeRequest(Comandos.abrir, Num_aulas - 1) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
+                                                toolStripStatusLabel1.Text = "Aluno " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortDateString();
+                                                aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
+                                                AdicionarAoHistorico += "Aluno " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortTimeString() + "\n";
+                                                AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
+                                                DescontarAula = true;
+                                                this.Invoke(atualizar);
+                                            }
                                         }
-                                    }
-
+                                    } 
                                 }
                             }
                         }
@@ -137,7 +139,7 @@ namespace CatApp
                     }
                     catch { }
                 }
-          //  }
+            }
         
         }
 
@@ -149,31 +151,31 @@ namespace CatApp
 
         private void alunosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
-            //MessageBox.Show(e.ColumnIndex.ToString());
-            switch (e.ColumnIndex)
-            {
-                case 7: //adicionar aulas
+            if (e.ColumnIndex == adicionar_aulas.Index) { 
+
                     FormAdicionarAulas f4 = new FormAdicionarAulas(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, ref alunosTableAdapter, e.RowIndex, ref TravaAtualizacao);
                     f4.ShowDialog();
-                    break;
-                case 8: //editar aluno
-                    FormEditarAluno f3 = new FormEditarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, ref alunosTableAdapter, e.RowIndex, ref TravaAPI, ref TravaAtualizacao);
-                    f3.ShowDialog();
-
-                    break;
-                case 9: //deletar aluno
-                    if (MessageBox.Show("Você tem certeza que deseja deletar todas as informações desse aluno? Se apenas torná-lo inativo, suas informações não serão deletadas, mas também não poderá entrar na academia.","Deseja deletar esse aluno?",MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+            }
+            else if (e.ColumnIndex == editar.Index)
+            {
+                FormEditarAluno f3 = new FormEditarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, ref alunosTableAdapter, e.RowIndex, ref TravaAPI, ref TravaAtualizacao);
+                f3.ShowDialog();
+            }
+            else if (e.ColumnIndex == deletar.Index)
+            {
+                if (MessageBox.Show("Você tem certeza que deseja deletar todas as informações desse aluno? Se apenas torná-lo inativo, suas informações não serão deletadas, mas também não poderá entrar na academia.", "Deseja deletar esse aluno?", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                {
+                    lock (TravaAtualizacao)
                     {
-                        lock (TravaAtualizacao)
-                        {
-                            alunosBindingSource.RemoveAt(e.RowIndex);
-                            this.Validate();
-                            this.alunosBindingSource.EndEdit();
-                            this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
-                        }
+                        alunosBindingSource.RemoveAt(e.RowIndex);
+                        this.Validate();
+                        this.alunosBindingSource.EndEdit();
+                        this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
                     }
-                    break;
+                }
+
             }
         }
 
@@ -191,14 +193,14 @@ namespace CatApp
             {
                 ts_mostraralunos.Text = "Mostrando alunos inativos";
                 dataGridViewCheckBoxColumn1.Visible = true;
-                alunosBindingSource.Sort = "Aluno_ativo DESC";
+                alunosBindingSource.Sort = colunas.AlunoAtivo + " DESC";
                 alunosBindingSource.Filter = "";
             }
             else
             {
                 ts_mostraralunos.Text = "Escondendo alunos inativos";
                 dataGridViewCheckBoxColumn1.Visible = false;
-                alunosBindingSource.Filter = "Aluno_ativo= true";
+                alunosBindingSource.Filter = colunas.AlunoAtivo + "= true";
             }
         }
 

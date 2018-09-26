@@ -31,9 +31,8 @@ namespace CatApp
             AlunosTableAdapter = d;
             index = row_index;
             aluno_editado = (DataRowView)AlunosBindingSource.List[index];
-            TextBoxAulasTotais.Text = aluno_editado["Aulas pagas"].ToString();
+            TextBoxAulasTotais.Text = aluno_editado[colunas.AulasPagas].ToString();
             TravaAtualizar = travaAtualizar;
-           // MessageBox.Show(aluno_editado["Código"].ToString());
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -44,21 +43,21 @@ namespace CatApp
         private void botaoAdicionar_Click(object sender, EventArgs e)
         {
             bool resultado = false;
-            if (TextBoxAulasAdicionadas.Text == "") {
+            if (TextBoxAulasAdicionadas.Text == "" || TextBoxAulasAdicionadas.Text == "-") {
                 MessageBox.Show("escreva quantas aulas você deseja adicionar à esse aluno!", "Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             int valor = Int32.Parse(TextBoxAulasAdicionadas.Text);
             if (valor > 0)
             {
-                if (MessageBox.Show("Você deseja adicionar " + TextBoxAulasAdicionadas.Text + " aulas ao aluno " + (string)aluno_editado["Nome"] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Você deseja adicionar " + TextBoxAulasAdicionadas.Text + " aulas ao aluno " + (string)aluno_editado[colunas.Nome] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     resultado = true;
                 }
             }
             else if (valor < 0)
             {
-                if (MessageBox.Show("Você deseja remover " + (-valor) + " aulas do aluno " + (string)aluno_editado["Nome"] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Você deseja remover " + (-valor) + " aulas do aluno " + (string)aluno_editado[colunas.Nome] + " ?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     resultado = true;
                 }
@@ -73,7 +72,7 @@ namespace CatApp
             }
             if (resultado)
             {
-                aluno_editado["aulas pagas"] = Int32.Parse(TextBoxAulasTotais.Text);
+                aluno_editado[colunas.AulasPagas] = Int32.Parse(TextBoxAulasTotais.Text);
                 lock (TravaAtualizar)
                 {
                     this.Validate();
@@ -86,22 +85,40 @@ namespace CatApp
         
         private void TextBoxAulasAdicionadas_TextChanged(object sender, EventArgs e)
         {
-            
+            if (TextBoxAulasAdicionadas.Text == "-") return;
             if(Int32.TryParse(TextBoxAulasAdicionadas.Text,out int valor))
             {
-                TextBoxAulasTotais.Text = (valor + (int)aluno_editado["Aulas pagas"]).ToString();
+                TextBoxAulasTotais.Text = (valor + (int)aluno_editado[colunas.AulasPagas]).ToString();
             }
-            
             else if (TextBoxAulasAdicionadas.Text == "")
             {
-                TextBoxAulasTotais.Text = aluno_editado["Aulas pagas"].ToString();
+                TextBoxAulasTotais.Text = aluno_editado[colunas.AulasPagas].ToString();
             }
             else
             {
-                MessageBox.Show("esse campo aceita apenas números positivos menores que cem mil!", "erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("esse campo aceita apenas números menores que cem mil!", "erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 TextBoxAulasAdicionadas.ResetText();
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (TextBoxAulasAdicionadas.Text == "" || TextBoxAulasAdicionadas.Text == "-")
+            {
+                TextBoxAulasAdicionadas.Text = "10";
+                TextBoxAulasTotais.Text = (10 + (int)aluno_editado[colunas.AulasPagas]).ToString();
+            }
+            else
+            {
+                TextBoxAulasAdicionadas.Text = (10 + Int32.Parse(TextBoxAulasAdicionadas.Text)).ToString();
+                TextBoxAulasTotais.Text = (Int32.Parse(TextBoxAulasAdicionadas.Text) + (int)aluno_editado[colunas.AulasPagas]).ToString();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TextBoxAulasAdicionadas.Text = "-1";
+            TextBoxAulasTotais.Text = ((int)aluno_editado[colunas.AulasPagas] - 1).ToString();
+        }
     }
 }

@@ -138,6 +138,8 @@
             this.ClientSize = new System.Drawing.Size(498, 260);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Configurações";
             this.Text = "configuracoes";
             this.groupBox1.ResumeLayout(false);

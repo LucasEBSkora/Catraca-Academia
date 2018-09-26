@@ -35,12 +35,14 @@
             this.TextBoxAulasTotais = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // botaoAdicionar
             // 
-            this.botaoAdicionar.Location = new System.Drawing.Point(37, 121);
+            this.botaoAdicionar.Location = new System.Drawing.Point(30, 160);
             this.botaoAdicionar.Name = "botaoAdicionar";
             this.botaoAdicionar.Size = new System.Drawing.Size(117, 23);
             this.botaoAdicionar.TabIndex = 0;
@@ -50,7 +52,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(234, 121);
+            this.buttonCancelar.Location = new System.Drawing.Point(321, 160);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 1;
@@ -60,19 +62,21 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.TextBoxAulasAdicionadas);
             this.groupBox1.Controls.Add(this.TextBoxAulasTotais);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(37, 9);
+            this.groupBox1.Location = new System.Drawing.Point(12, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(287, 101);
+            this.groupBox1.Size = new System.Drawing.Size(390, 145);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
             // TextBoxAulasAdicionadas
             // 
-            this.TextBoxAulasAdicionadas.Location = new System.Drawing.Point(159, 63);
+            this.TextBoxAulasAdicionadas.Location = new System.Drawing.Point(159, 64);
             this.TextBoxAulasAdicionadas.Name = "TextBoxAulasAdicionadas";
             this.TextBoxAulasAdicionadas.Size = new System.Drawing.Size(43, 22);
             this.TextBoxAulasAdicionadas.TabIndex = 5;
@@ -103,16 +107,39 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Número total de aulas do aluno";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(281, 38);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 48);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Adicionar 10 aulas";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(281, 92);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 47);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Remover uma aula";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormAdicionarAulas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 156);
+            this.ClientSize = new System.Drawing.Size(412, 191);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.botaoAdicionar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormAdicionarAulas";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Adicionar Aulas";
             this.groupBox1.ResumeLayout(false);
@@ -130,5 +157,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TextBoxAulasTotais;
         private System.Windows.Forms.TextBox TextBoxAulasAdicionadas;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
