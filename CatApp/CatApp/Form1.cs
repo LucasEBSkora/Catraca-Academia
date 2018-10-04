@@ -29,13 +29,15 @@ namespace CatApp
         void MetodoAtualizarLista()
         {
             lock (TravaAtualizacao) {
-                DataRowView aluno = (DataRowView)alunosBindingSource.List[IndiceAluno];
+                DataRowView Aluno;
+                try { Aluno = (DataRowView)alunosBindingSource.List[IndiceAluno]; }
+                catch { return; }
                 if (DescontarAula)
                 {
-                    aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
-                    aluno[colunas.AulasPagas] = (int)aluno[colunas.AulasPagas] - 1;
+                    Aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
+                    Aluno[colunas.AulasPagas] = (int)Aluno[colunas.AulasPagas] - 1;
                 }
-                aluno[colunas.Historico] += AdicionarAoHistorico;
+                Aluno[colunas.Historico] += AdicionarAoHistorico;
                 this.Validate();
                 this.alunosBindingSource.EndEdit();
                 try
@@ -123,9 +125,9 @@ namespace CatApp
                                             else
                                             {
                                                 if (ClienteREST.makeRequest(Comandos.abrir, Num_aulas - 1) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
-                                                toolStripStatusLabel1.Text = "Aluno " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortDateString();
+                                                toolStripStatusLabel1.Text = "Aluno " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortTimeString();
                                                 aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
-                                                AdicionarAoHistorico += "Aluno " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortTimeString() + "\n";
+                                                AdicionarAoHistorico += DateTime.Now.ToShortTimeString() + ": Aluno entrou na academia\n";
                                                 AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
                                                 DescontarAula = true;
                                                 this.Invoke(atualizar);
@@ -160,7 +162,7 @@ namespace CatApp
             }
             else if (e.ColumnIndex == editar.Index)
             {
-                FormEditarAluno f3 = new FormEditarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, ref alunosTableAdapter, e.RowIndex, ref TravaAPI, ref TravaAtualizacao);
+                FormEditarAluno f3 = new FormEditarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, ref alunosTableAdapter, ref TravaAPI, ref TravaAtualizacao, e.RowIndex);
                 f3.ShowDialog();
             }
             else if (e.ColumnIndex == deletar.Index)
@@ -181,7 +183,7 @@ namespace CatApp
 
         private void botaoadicionar_Click(object sender, EventArgs e)
         {
-                FormAdicionarAluno f2 = new FormAdicionarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, ref alunosTableAdapter, ref TravaAPI, ref TravaAtualizacao);
+                FormEditarAluno f2 = new FormEditarAluno(ref tableAdapterManager, ref alunosBindingSource, ref database_alunosDataSet, ref alunosTableAdapter, ref TravaAPI, ref TravaAtualizacao);
                 f2.ShowDialog();
         }
 

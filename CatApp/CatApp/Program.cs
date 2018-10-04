@@ -30,6 +30,7 @@ namespace CatApp
     {
         public static string[] genero = { "Masculino", "Feminino", "Outro(a)" };
     }
+
     public static class colunas
     {
         public const string Codigo = "Código";

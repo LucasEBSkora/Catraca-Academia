@@ -31,17 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.alunosDataGridView = new System.Windows.Forms.DataGridView();
-            this.alunosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.database_alunosDataSet = new CatApp.Database_alunosDataSet();
-            this.botaoadicionar = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ts_mostraralunos = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.alunosTableAdapter = new CatApp.Database_alunosDataSetTableAdapters.AlunosTableAdapter();
-            this.tableAdapterManager = new CatApp.Database_alunosDataSetTableAdapters.TableAdapterManager();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +45,17 @@
             this.adicionar_aulas = new System.Windows.Forms.DataGridViewButtonColumn();
             this.editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deletar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.alunosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.database_alunosDataSet = new CatApp.Database_alunosDataSet();
+            this.botaoadicionar = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ts_mostraralunos = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.alunosTableAdapter = new CatApp.Database_alunosDataSetTableAdapters.AlunosTableAdapter();
+            this.tableAdapterManager = new CatApp.Database_alunosDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.alunosDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alunosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database_alunosDataSet)).BeginInit();
@@ -88,90 +88,11 @@
             this.alunosDataGridView.DataSource = this.alunosBindingSource;
             this.alunosDataGridView.Location = new System.Drawing.Point(12, 80);
             this.alunosDataGridView.Name = "alunosDataGridView";
+            this.alunosDataGridView.RowHeadersVisible = false;
             this.alunosDataGridView.RowTemplate.Height = 24;
             this.alunosDataGridView.Size = new System.Drawing.Size(1144, 200);
             this.alunosDataGridView.TabIndex = 1;
             this.alunosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.alunosDataGridView_CellContentClick);
-            // 
-            // alunosBindingSource
-            // 
-            this.alunosBindingSource.DataMember = "Alunos";
-            this.alunosBindingSource.DataSource = this.database_alunosDataSet;
-            // 
-            // database_alunosDataSet
-            // 
-            this.database_alunosDataSet.DataSetName = "Database_alunosDataSet";
-            this.database_alunosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // botaoadicionar
-            // 
-            this.botaoadicionar.Location = new System.Drawing.Point(12, 31);
-            this.botaoadicionar.Name = "botaoadicionar";
-            this.botaoadicionar.Size = new System.Drawing.Size(80, 43);
-            this.botaoadicionar.TabIndex = 3;
-            this.botaoadicionar.Text = "adicionar aluno";
-            this.botaoadicionar.UseVisualStyleBackColor = true;
-            this.botaoadicionar.Click += new System.EventHandler(this.botaoadicionar_Click);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.opçõesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1225, 28);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // opçõesToolStripMenuItem
-            // 
-            this.opçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ts_mostraralunos,
-            this.configuraçõesToolStripMenuItem});
-            this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
-            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
-            this.opçõesToolStripMenuItem.Text = "Opções";
-            // 
-            // ts_mostraralunos
-            // 
-            this.ts_mostraralunos.Name = "ts_mostraralunos";
-            this.ts_mostraralunos.Size = new System.Drawing.Size(269, 26);
-            this.ts_mostraralunos.Text = "Escondendo Alunos Inativos";
-            this.ts_mostraralunos.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // configuraçõesToolStripMenuItem
-            // 
-            this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
-            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(269, 26);
-            this.configuraçõesToolStripMenuItem.Text = "Configurações";
-            this.configuraçõesToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesToolStripMenuItem_Click);
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 632);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1225, 22);
-            this.statusStrip.TabIndex = 5;
-            this.statusStrip.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // alunosTableAdapter
-            // 
-            this.alunosTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AlunosTableAdapter = this.alunosTableAdapter;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.UpdateOrder = CatApp.Database_alunosDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -291,6 +212,86 @@
             this.deletar.Name = "deletar";
             this.deletar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.deletar.Width = 55;
+            // 
+            // alunosBindingSource
+            // 
+            this.alunosBindingSource.DataMember = "Alunos";
+            this.alunosBindingSource.DataSource = this.database_alunosDataSet;
+            // 
+            // database_alunosDataSet
+            // 
+            this.database_alunosDataSet.DataSetName = "Database_alunosDataSet";
+            this.database_alunosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // botaoadicionar
+            // 
+            this.botaoadicionar.Location = new System.Drawing.Point(12, 31);
+            this.botaoadicionar.Name = "botaoadicionar";
+            this.botaoadicionar.Size = new System.Drawing.Size(80, 43);
+            this.botaoadicionar.TabIndex = 3;
+            this.botaoadicionar.Text = "adicionar aluno";
+            this.botaoadicionar.UseVisualStyleBackColor = true;
+            this.botaoadicionar.Click += new System.EventHandler(this.botaoadicionar_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.opçõesToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1225, 28);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // opçõesToolStripMenuItem
+            // 
+            this.opçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ts_mostraralunos,
+            this.configuraçõesToolStripMenuItem});
+            this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
+            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.opçõesToolStripMenuItem.Text = "Opções";
+            // 
+            // ts_mostraralunos
+            // 
+            this.ts_mostraralunos.Name = "ts_mostraralunos";
+            this.ts_mostraralunos.Size = new System.Drawing.Size(269, 26);
+            this.ts_mostraralunos.Text = "Escondendo Alunos Inativos";
+            this.ts_mostraralunos.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // configuraçõesToolStripMenuItem
+            // 
+            this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
+            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(269, 26);
+            this.configuraçõesToolStripMenuItem.Text = "Configurações";
+            this.configuraçõesToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesToolStripMenuItem_Click);
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip.Location = new System.Drawing.Point(0, 632);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(1225, 22);
+            this.statusStrip.TabIndex = 5;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // alunosTableAdapter
+            // 
+            this.alunosTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AlunosTableAdapter = this.alunosTableAdapter;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.UpdateOrder = CatApp.Database_alunosDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // Form1
             // 
