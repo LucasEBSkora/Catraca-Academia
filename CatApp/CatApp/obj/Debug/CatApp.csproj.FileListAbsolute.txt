@@ -19,7 +19,6 @@ C:\Users\skora\OneDrive\Catraca Academia\projeto_catraca\CatApp\CatApp\obj\Debug
 C:\Users\skora\OneDrive\Catraca Academia\projeto_catraca\CatApp\CatApp\obj\Debug\CatApp.csproj.CoreCompileInputs.cache
 C:\Users\skora\OneDrive\Catraca Academia\projeto_catraca\CatApp\CatApp\obj\Debug\CatApp.exe
 C:\Users\skora\OneDrive\Catraca Academia\projeto_catraca\CatApp\CatApp\obj\Debug\CatApp.pdb
-C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.FormAdicionarAluno.resources
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.FormEditarAluno.resources
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\obj\Debug\CatApp.FormAdicionarAulas.resources
 C:\Users\skora\OneDrive\Catraca Academia\CatApp\CatApp\bin\Debug\Newtonsoft.Json.dll

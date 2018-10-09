@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Specialized;
-
+using System.Data;
 namespace CatApp
 {
     public class Variables
@@ -26,29 +26,58 @@ namespace CatApp
         static public DateTime hora_fecha { get; set; }
 
     }
-    static class valores
+    static class utilidades
     {
         public static string[] genero = { "Masculino", "Feminino", "Outro(a)" };
+        public enum adeqSituacoes{
+            ao,
+            ae,
+            aaao
+
+        }
+        public static string adeq(DataRowView Aluno, adeqSituacoes adeq)
+        {
+            switch (adeq)
+            {
+                case adeqSituacoes.ao:
+                    if ((string)Aluno[colunas.Genero] == "Feminino") return "a";
+                    else return "o";
+                case adeqSituacoes.ae:
+                    if ((string)Aluno[colunas.Genero] == "Feminino") return "a";
+                    else return "e";
+                case adeqSituacoes.aaao:
+                    if ((string)Aluno[colunas.Genero] == "Feminino") return "à";
+                    else return "ao";
+                default:
+                    return "x";
+            }
+
+        }
     }
+
 
     public static class colunas
     {
-        public const string Codigo = "Código";
-        public const string CodigoRFID = "Código RFID";
-        public const string Nome = "Nome";
-        public const string AulasPagas = "Aulas pagas";
-        public const string AlunoAtivo = "Aluno_ativo";
-        public const string UltimaEntrada = "ultima_entrada";
-        public const string Historico = "historico";
-        public const string historicoMedico = "historico_medico";
-        public const string Anotacoes = "anotacoes";
-        public const string HorariosAulas = "horarios_aulas";
-        public const string dataInscricao = "data_inscricao";
-        public const string Genero = "Gênero";
-        public const string Telefone = "Telefone";
-        public const string Email = "Email";
-        public const string HistoricoAulas = "Histórico de aulas";
+        public const string Codigo           = "Código";
+        public const string CodigoRFID       = "Código RFID";
+        public const string Nome             = "Nome";
+        public const string AulasPagas       = "Aulas pagas";
+        public const string AlunoAtivo       = "Aluno_ativo";
+        public const string UltimaEntrada    = "ultima_entrada";
+        public const string Historico        = "historico";
+        public const string historicoMedico  = "historico_medico";
+        public const string Anotacoes        = "anotacoes";
+        public const string HorariosAulas    = "horarios_aulas";
+        public const string dataInscricao    = "data_inscricao";
+        public const string Genero           = "Gênero";
+        public const string Telefone         = "Telefone";
+        public const string Email            = "Email";
+        public const string HistoricoAulas   = "Histórico de aulas";
         public const string RegistroMedicoes = "Registro de medições";
+        public const string Aniversario      = "Aniversario";
+        public const string NumeroCartao     = "NumeroCartao";
+        public const string Idade            = "Idade";
+
 
     }
 

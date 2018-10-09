@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Configuration;
 using System.Collections.Specialized;
+using Newtonsoft.Json;
 namespace CatApp
 {   
     public partial class Form1 : Form
@@ -37,16 +38,25 @@ namespace CatApp
                     Aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
                     Aluno[colunas.AulasPagas] = (int)Aluno[colunas.AulasPagas] - 1;
                 }
-                Aluno[colunas.Historico] += AdicionarAoHistorico;
+                //Aluno[colunas.Historico] += AdicionarAoHistorico;
+                List<EntradaHistorico> HLista = JsonConvert.DeserializeObject<List<EntradaHistorico>>((string)Aluno[colunas.Historico]);
+                int indice = HLista.FindIndex(x => x.Data == DateTime.Now.Date);
+                if (indice == -1)
+                {
+                    HLista.Add(new EntradaHistorico(DateTime.Now.Date, AdicionarAoHistorico));
+
+                }
+                else
+                {
+                    HLista[indice].Entrada += AdicionarAoHistorico;
+                }
+                Aluno[colunas.Historico] = JsonConvert.SerializeObject(HLista);
                 this.Validate();
                 this.alunosBindingSource.EndEdit();
-                try
-                {
-                    
-                    this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
-                }
+                try { this.tableAdapterManager.UpdateAll(this.database_alunosDataSet); }
                 catch { }
-                //alunosTableAdapter.Fill(database_alunosDataSet.Alunos);
+
+
             }
             IndiceAluno = -1;
             DescontarAula = false;
@@ -64,6 +74,7 @@ namespace CatApp
             AdicionarAoHistorico = string.Empty;
             IndiceAluno = -1;
             alunosDataGridView.Size = new Size(Screen.PrimaryScreen.Bounds.Width - 30, Screen.PrimaryScreen.Bounds.Height - 150);
+            horarios_aulas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
          void checar_porta()
@@ -110,7 +121,7 @@ namespace CatApp
                                         if ((string)aluno[colunas.UltimaEntrada] == DateTime.Now.ToShortDateString())
                                         {
                                             if (ClienteREST.makeRequest(Comandos.abrir, (int)aluno[colunas.AulasPagas]) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
-                                            AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
+                                            AdicionarAoHistorico += "\n\n" +DateTime.Now.ToShortTimeString() + " - Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " abriu a porta";
                                             this.Invoke(atualizar);
 
                                         }
@@ -120,15 +131,14 @@ namespace CatApp
                                             if (Num_aulas == 0)
                                             {
                                                 if (ClienteREST.makeRequest(Comandos.semcredito) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
-                                                toolStripStatusLabel1.Text = "Aluno " + (string)aluno[colunas.Nome] + " tentou entrar às " + DateTime.Now.ToShortTimeString() + ", mas suas aulas pagas acabaram";
+                                                toolStripStatusLabel1.Text = "Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " " + (string)aluno[colunas.Nome] + " tentou entrar às " + DateTime.Now.ToShortTimeString() + ", mas suas aulas pagas acabaram";
                                             }
                                             else
                                             {
                                                 if (ClienteREST.makeRequest(Comandos.abrir, Num_aulas - 1) == "falhou") toolStripStatusLabel1.Text = "Erro na comunicação com a porta! O wifi pode não estar funcionando, a porta ter desligado ou desconectado, ou o endereço da porta estar errada.";
-                                                toolStripStatusLabel1.Text = "Aluno " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortTimeString();
+                                                toolStripStatusLabel1.Text = "Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortTimeString();
                                                 aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
-                                                AdicionarAoHistorico += DateTime.Now.ToShortTimeString() + ": Aluno entrou na academia\n";
-                                                AdicionarAoHistorico += "\tAluno abriu a porta às " + DateTime.Now.ToShortTimeString() + "\n";
+                                                AdicionarAoHistorico += "\n\n" + DateTime.Now.ToShortTimeString() + " - Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " abriu a porta pela primeira vez no dia";
                                                 DescontarAula = true;
                                                 this.Invoke(atualizar);
                                             }
@@ -142,13 +152,43 @@ namespace CatApp
                     catch { }
                 }
             }
-        
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: esta linha de código carrega dados na tabela 'database_alunosDataSet.Alunos'. Você pode movê-la ou removê-la conforme necessário.
             this.alunosTableAdapter.Fill(this.database_alunosDataSet.Alunos);
+            foreach(DataRowView aluno in alunosBindingSource)
+            {
+                if ((string)aluno[colunas.Aniversario] == "-") aluno["Idade"] = "0";
+                else
+                {
+                    bool FezAniversarioEsseAno = false;
+                    DateTime Hoje = DateTime.Now.Date;
+                    DateTime Aniversario = DateTime.Parse((string)aluno[colunas.Aniversario]);
+                    if (Hoje.Month < Aniversario.Month) FezAniversarioEsseAno = false;
+                    else if (Hoje.Month == Aniversario.Month)
+                    {
+                        if (Hoje.Month < Aniversario.Month) FezAniversarioEsseAno = false;
+                        else if (Hoje.Day == Aniversario.Day)
+                        {
+                            MessageBox.Show("é o aniversário de " + (string)aluno[colunas.Nome] + " hoje!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            FezAniversarioEsseAno = true;
+                        }
+                        else FezAniversarioEsseAno = true;
+                    }
+                    else FezAniversarioEsseAno = true;
+                    
+                    if (FezAniversarioEsseAno) aluno["Idade"] = Hoje.Year - Aniversario.Year;
+                    else aluno["Idade"] = Hoje.Year - Aniversario.Year - 1;
+                }
+            }
+            lock (TravaAtualizacao)
+            {
+                this.Validate();
+                this.alunosBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.database_alunosDataSet);
+            }
         }
 
         private void alunosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -167,7 +207,8 @@ namespace CatApp
             }
             else if (e.ColumnIndex == deletar.Index)
             {
-                if (MessageBox.Show("Você tem certeza que deseja deletar todas as informações desse aluno? Se apenas torná-lo inativo, suas informações não serão deletadas, mas também não poderá entrar na academia.", "Deseja deletar esse aluno?", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                DataRowView aluno = (DataRowView)alunosBindingSource[e.RowIndex];
+                if (MessageBox.Show("Você tem certeza que deseja deletar todas as informações dess" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ae) + " alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + "? Se apenas torná-lo inativo, suas informações não serão deletadas, mas também não poderá entrar na academia.", "Deseja deletar esse aluno?", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
                 {
                     lock (TravaAtualizacao)
                     {

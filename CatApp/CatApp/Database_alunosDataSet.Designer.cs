@@ -311,6 +311,12 @@ namespace CatApp {
             
             private global::System.Data.DataColumn columnRegistro_de_medições;
             
+            private global::System.Data.DataColumn columnAniversario;
+            
+            private global::System.Data.DataColumn columnnumeroCartao;
+            
+            private global::System.Data.DataColumn columnIdade;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public AlunosDataTable() {
@@ -474,6 +480,30 @@ namespace CatApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AniversarioColumn {
+                get {
+                    return this.columnAniversario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numeroCartaoColumn {
+                get {
+                    return this.columnnumeroCartao;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdadeColumn {
+                get {
+                    return this.columnIdade;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -509,7 +539,25 @@ namespace CatApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AlunosRow AddAlunosRow(string Código_RFID, string Nome, int Aulas_pagas, bool Aluno_ativo, string ultima_entrada, string historico, string historico_medico, string anotacoes, string horarios_aulas, string data_inscricao, string Gênero, string Telefone, string Email, string Histórico_de_aulas, string Registro_de_medições) {
+            public AlunosRow AddAlunosRow(
+                        string Código_RFID, 
+                        string Nome, 
+                        int Aulas_pagas, 
+                        bool Aluno_ativo, 
+                        string ultima_entrada, 
+                        string historico, 
+                        string historico_medico, 
+                        string anotacoes, 
+                        string horarios_aulas, 
+                        string data_inscricao, 
+                        string Gênero, 
+                        string Telefone, 
+                        string Email, 
+                        string Histórico_de_aulas, 
+                        string Registro_de_medições, 
+                        string Aniversario, 
+                        int numeroCartao, 
+                        int Idade) {
                 AlunosRow rowAlunosRow = ((AlunosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -527,7 +575,10 @@ namespace CatApp {
                         Telefone,
                         Email,
                         Histórico_de_aulas,
-                        Registro_de_medições};
+                        Registro_de_medições,
+                        Aniversario,
+                        numeroCartao,
+                        Idade};
                 rowAlunosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAlunosRow);
                 return rowAlunosRow;
@@ -573,6 +624,9 @@ namespace CatApp {
                 this.columnEmail = base.Columns["Email"];
                 this.columnHistórico_de_aulas = base.Columns["Histórico de aulas"];
                 this.columnRegistro_de_medições = base.Columns["Registro de medições"];
+                this.columnAniversario = base.Columns["Aniversario"];
+                this.columnnumeroCartao = base.Columns["numeroCartao"];
+                this.columnIdade = base.Columns["Idade"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -610,6 +664,12 @@ namespace CatApp {
                 base.Columns.Add(this.columnHistórico_de_aulas);
                 this.columnRegistro_de_medições = new global::System.Data.DataColumn("Registro de medições", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRegistro_de_medições);
+                this.columnAniversario = new global::System.Data.DataColumn("Aniversario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAniversario);
+                this.columnnumeroCartao = new global::System.Data.DataColumn("numeroCartao", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumeroCartao);
+                this.columnIdade = new global::System.Data.DataColumn("Idade", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdade);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCódigo}, true));
                 this.columnCódigo.AutoIncrement = true;
@@ -630,6 +690,7 @@ namespace CatApp {
                 this.columnEmail.MaxLength = 255;
                 this.columnHistórico_de_aulas.MaxLength = 536870910;
                 this.columnRegistro_de_medições.MaxLength = 536870910;
+                this.columnAniversario.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1023,6 +1084,54 @@ namespace CatApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Aniversario {
+                get {
+                    try {
+                        return ((string)(this[this.tableAlunos.AniversarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'Aniversario\' na tabela \'Alunos\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAlunos.AniversarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int numeroCartao {
+                get {
+                    try {
+                        return ((int)(this[this.tableAlunos.numeroCartaoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'numeroCartao\' na tabela \'Alunos\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAlunos.numeroCartaoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Idade {
+                get {
+                    try {
+                        return ((int)(this[this.tableAlunos.IdadeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'Idade\' na tabela \'Alunos\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAlunos.IdadeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCódigo_RFIDNull() {
                 return this.IsNull(this.tableAlunos.Código_RFIDColumn);
             }
@@ -1199,6 +1308,42 @@ namespace CatApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetRegistro_de_mediçõesNull() {
                 this[this.tableAlunos.Registro_de_mediçõesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAniversarioNull() {
+                return this.IsNull(this.tableAlunos.AniversarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAniversarioNull() {
+                this[this.tableAlunos.AniversarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumeroCartaoNull() {
+                return this.IsNull(this.tableAlunos.numeroCartaoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumeroCartaoNull() {
+                this[this.tableAlunos.numeroCartaoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIdadeNull() {
+                return this.IsNull(this.tableAlunos.IdadeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIdadeNull() {
+                this[this.tableAlunos.IdadeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1377,10 +1522,13 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Email", "Email");
             tableMapping.ColumnMappings.Add("Histórico de aulas", "Histórico de aulas");
             tableMapping.ColumnMappings.Add("Registro de medições", "Registro de medições");
+            tableMapping.ColumnMappings.Add("Aniversario", "Aniversario");
+            tableMapping.ColumnMappings.Add("numeroCartao", "numeroCartao");
+            tableMapping.ColumnMappings.Add("Idade", "Idade");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Alunos` WHERE ((`Código` = ?) AND ((? = 1 AND `Código RFID` IS NULL) OR (`Código RFID` = ?)) AND ((? = 1 AND `Nome` IS NULL) OR (`Nome` = ?)) AND ((? = 1 AND `Aulas pagas` IS NULL) OR (`Aulas pagas` = ?)) AND ((? = 1 AND `Aluno_ativo` IS NULL) OR (`Aluno_ativo` = ?)) AND ((? = 1 AND `ultima_entrada` IS NULL) OR (`ultima_entrada` = ?)) AND ((? = 1 AND `data_inscricao` IS NULL) OR (`data_inscricao` = ?)) AND ((? = 1 AND `Email` IS NULL) OR (`Email` = ?)) AND ((? = 1 AND `Gênero` IS NULL) OR (`Gênero` = ?)) AND ((? = 1 AND `Telefone` IS NULL) OR (`Telefone` = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Alunos` WHERE ((`Código` = ?) AND ((? = 1 AND `Código RFID` IS NULL) OR (`Código RFID` = ?)) AND ((? = 1 AND `Nome` IS NULL) OR (`Nome` = ?)) AND ((? = 1 AND `Aulas pagas` IS NULL) OR (`Aulas pagas` = ?)) AND ((? = 1 AND `Aluno_ativo` IS NULL) OR (`Aluno_ativo` = ?)) AND ((? = 1 AND `ultima_entrada` IS NULL) OR (`ultima_entrada` = ?)) AND ((? = 1 AND `data_inscricao` IS NULL) OR (`data_inscricao` = ?)) AND ((? = 1 AND `Email` IS NULL) OR (`Email` = ?)) AND ((? = 1 AND `Gênero` IS NULL) OR (`Gênero` = ?)) AND ((? = 1 AND `Telefone` IS NULL) OR (`Telefone` = ?)) AND ((? = 1 AND `Aniversario` IS NULL) OR (`Aniversario` = ?)) AND ((? = 1 AND `numeroCartao` IS NULL) OR (`numeroCartao` = ?)) AND ((? = 1 AND `Idade` IS NULL) OR (`Idade` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Código", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Código", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Código_RFID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Código RFID", global::System.Data.DataRowVersion.Original, true, null));
@@ -1401,9 +1549,15 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Gênero", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Gênero", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Telefone", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Telefone", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Telefone", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Telefone", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Aniversario", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Aniversario", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Aniversario", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Aniversario", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_numeroCartao", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "numeroCartao", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_numeroCartao", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "numeroCartao", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Idade", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Idade", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Idade", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Idade", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `Alunos` (`Código RFID`, `Nome`, `Aulas pagas`, `Aluno_ativo`, `anotacoes`, `historico`, `historico_medico`, `horarios_aulas`, `ultima_entrada`, `data_inscricao`, `Email`, `Gênero`, `Histórico de aulas`, `Registro de medições`, `Telefone`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `Alunos` (`Código RFID`, `Nome`, `Aulas pagas`, `Aluno_ativo`, `anotacoes`, `historico`, `historico_medico`, `horarios_aulas`, `ultima_entrada`, `data_inscricao`, `Email`, `Gênero`, `Histórico de aulas`, `Registro de medições`, `Telefone`, `Aniversario`, `numeroCartao`, `Idade`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Código_RFID", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Código RFID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Nome", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Nome", global::System.Data.DataRowVersion.Current, false, null));
@@ -1420,9 +1574,12 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Histórico_de_aulas", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Histórico de aulas", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Registro_de_medições", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Registro de medições", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Telefone", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Telefone", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Aniversario", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Aniversario", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("numeroCartao", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "numeroCartao", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Idade", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Idade", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Alunos` SET `Código RFID` = ?, `Nome` = ?, `Aulas pagas` = ?, `Aluno_ativo` = ?, `anotacoes` = ?, `historico` = ?, `historico_medico` = ?, `horarios_aulas` = ?, `ultima_entrada` = ?, `data_inscricao` = ?, `Email` = ?, `Gênero` = ?, `Histórico de aulas` = ?, `Registro de medições` = ?, `Telefone` = ? WHERE ((`Código` = ?) AND ((? = 1 AND `Código RFID` IS NULL) OR (`Código RFID` = ?)) AND ((? = 1 AND `Nome` IS NULL) OR (`Nome` = ?)) AND ((? = 1 AND `Aulas pagas` IS NULL) OR (`Aulas pagas` = ?)) AND ((? = 1 AND `Aluno_ativo` IS NULL) OR (`Aluno_ativo` = ?)) AND ((? = 1 AND `ultima_entrada` IS NULL) OR (`ultima_entrada` = ?)) AND ((? = 1 AND `data_inscricao` IS NULL) OR (`data_inscricao` = ?)) AND ((? = 1 AND `Email` IS NULL) OR (`Email` = ?)) AND ((? = 1 AND `Gênero` IS NULL) OR (`Gênero` = ?)) AND ((? = 1 AND `Telefone` IS NULL) OR (`Telefone` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Alunos` SET `Código RFID` = ?, `Nome` = ?, `Aulas pagas` = ?, `Aluno_ativo` = ?, `anotacoes` = ?, `historico` = ?, `historico_medico` = ?, `horarios_aulas` = ?, `ultima_entrada` = ?, `data_inscricao` = ?, `Email` = ?, `Gênero` = ?, `Histórico de aulas` = ?, `Registro de medições` = ?, `Telefone` = ?, `Aniversario` = ?, `numeroCartao` = ?, `Idade` = ? WHERE ((`Código` = ?) AND ((? = 1 AND `Código RFID` IS NULL) OR (`Código RFID` = ?)) AND ((? = 1 AND `Nome` IS NULL) OR (`Nome` = ?)) AND ((? = 1 AND `Aulas pagas` IS NULL) OR (`Aulas pagas` = ?)) AND ((? = 1 AND `Aluno_ativo` IS NULL) OR (`Aluno_ativo` = ?)) AND ((? = 1 AND `ultima_entrada` IS NULL) OR (`ultima_entrada` = ?)) AND ((? = 1 AND `data_inscricao` IS NULL) OR (`data_inscricao` = ?)) AND ((? = 1 AND `Email` IS NULL) OR (`Email` = ?)) AND ((? = 1 AND `Gênero` IS NULL) OR (`Gênero` = ?)) AND ((? = 1 AND `Telefone` IS NULL) OR (`Telefone` = ?)) AND ((? = 1 AND `Aniversario` IS NULL) OR (`Aniversario` = ?)) AND ((? = 1 AND `numeroCartao` IS NULL) OR (`numeroCartao` = ?)) AND ((? = 1 AND `Idade` IS NULL) OR (`Idade` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Código_RFID", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Código RFID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Nome", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Nome", global::System.Data.DataRowVersion.Current, false, null));
@@ -1439,6 +1596,9 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Histórico_de_aulas", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Histórico de aulas", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Registro_de_medições", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Registro de medições", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Telefone", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Telefone", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Aniversario", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Aniversario", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("numeroCartao", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "numeroCartao", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Idade", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Idade", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Código", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Código", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Código_RFID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Código RFID", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Código_RFID", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Código RFID", global::System.Data.DataRowVersion.Original, false, null));
@@ -1458,6 +1618,12 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Gênero", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Gênero", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Telefone", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Telefone", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Telefone", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Telefone", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Aniversario", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Aniversario", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Aniversario", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Aniversario", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_numeroCartao", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "numeroCartao", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_numeroCartao", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "numeroCartao", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Idade", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Idade", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Idade", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Idade", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1473,9 +1639,7 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Código, [Código RFID], Nome, [Aulas pagas], Aluno_ativo, anotacoes, histor" +
-                "ico, historico_medico, horarios_aulas, ultima_entrada, data_inscricao, Email, Gê" +
-                "nero, [Histórico de aulas], [Registro de medições], Telefone FROM Alunos";
+            this._commandCollection[0].CommandText = @"SELECT Código, [Código RFID], Nome, [Aulas pagas], Aluno_ativo, anotacoes, historico, historico_medico, horarios_aulas, ultima_entrada, data_inscricao, Email, Gênero, [Histórico de aulas], [Registro de medições], Telefone, Aniversario, numeroCartao, Idade FROM Alunos";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1536,7 +1700,7 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Código, string Original_Código_RFID, string Original_Nome, global::System.Nullable<int> Original_Aulas_pagas, bool Original_Aluno_ativo, string Original_ultima_entrada, string Original_data_inscricao, string Original_Email, string Original_Gênero, string Original_Telefone) {
+        public virtual int Delete(int Original_Código, string Original_Código_RFID, string Original_Nome, global::System.Nullable<int> Original_Aulas_pagas, bool Original_Aluno_ativo, string Original_ultima_entrada, string Original_data_inscricao, string Original_Email, string Original_Gênero, string Original_Telefone, string Original_Aniversario, global::System.Nullable<int> Original_numeroCartao, global::System.Nullable<int> Original_Idade) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Código));
             if ((Original_Código_RFID == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -1604,6 +1768,30 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_Telefone));
             }
+            if ((Original_Aniversario == null)) {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((string)(Original_Aniversario));
+            }
+            if ((Original_numeroCartao.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((int)(Original_numeroCartao.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Idade.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[24].Value = ((int)(Original_Idade.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1624,7 +1812,25 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Código_RFID, string Nome, global::System.Nullable<int> Aulas_pagas, bool Aluno_ativo, string anotacoes, string historico, string historico_medico, string horarios_aulas, string ultima_entrada, string data_inscricao, string Email, string Gênero, string Histórico_de_aulas, string Registro_de_medições, string Telefone) {
+        public virtual int Insert(
+                    string Código_RFID, 
+                    string Nome, 
+                    global::System.Nullable<int> Aulas_pagas, 
+                    bool Aluno_ativo, 
+                    string anotacoes, 
+                    string historico, 
+                    string historico_medico, 
+                    string horarios_aulas, 
+                    string ultima_entrada, 
+                    string data_inscricao, 
+                    string Email, 
+                    string Gênero, 
+                    string Histórico_de_aulas, 
+                    string Registro_de_medições, 
+                    string Telefone, 
+                    string Aniversario, 
+                    global::System.Nullable<int> numeroCartao, 
+                    global::System.Nullable<int> Idade) {
             if ((Código_RFID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1710,6 +1916,24 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[14].Value = ((string)(Telefone));
             }
+            if ((Aniversario == null)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(Aniversario));
+            }
+            if ((numeroCartao.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((int)(numeroCartao.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((Idade.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[17].Value = ((int)(Idade.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1746,6 +1970,9 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
                     string Histórico_de_aulas, 
                     string Registro_de_medições, 
                     string Telefone, 
+                    string Aniversario, 
+                    global::System.Nullable<int> numeroCartao, 
+                    global::System.Nullable<int> Idade, 
                     int Original_Código, 
                     string Original_Código_RFID, 
                     string Original_Nome, 
@@ -1755,7 +1982,10 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
                     string Original_data_inscricao, 
                     string Original_Email, 
                     string Original_Gênero, 
-                    string Original_Telefone) {
+                    string Original_Telefone, 
+                    string Original_Aniversario, 
+                    global::System.Nullable<int> Original_numeroCartao, 
+                    global::System.Nullable<int> Original_Idade) {
             if ((Código_RFID == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1841,72 +2071,114 @@ namespace CatApp.Database_alunosDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Telefone));
             }
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_Código));
-            if ((Original_Código_RFID == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+            if ((Aniversario == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Aniversario));
+            }
+            if ((numeroCartao.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(numeroCartao.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((Idade.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Idade.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_Código));
+            if ((Original_Código_RFID == null)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Código_RFID));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Código_RFID));
             }
             if ((Original_Nome == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_Nome));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Nome));
             }
             if ((Original_Aulas_pagas.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_Aulas_pagas.Value));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_Aulas_pagas.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_Aluno_ativo));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(Original_Aluno_ativo));
             if ((Original_ultima_entrada == null)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(Original_ultima_entrada));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_ultima_entrada));
             }
             if ((Original_data_inscricao == null)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_data_inscricao));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(Original_data_inscricao));
             }
             if ((Original_Email == null)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Original_Email));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((string)(Original_Email));
             }
             if ((Original_Gênero == null)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Original_Gênero));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((string)(Original_Gênero));
             }
             if ((Original_Telefone == null)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((string)(Original_Telefone));
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((string)(Original_Telefone));
+            }
+            if ((Original_Aniversario == null)) {
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[38].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((string)(Original_Aniversario));
+            }
+            if ((Original_numeroCartao.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(Original_numeroCartao.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[40].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Idade.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((int)(Original_Idade.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[42].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 

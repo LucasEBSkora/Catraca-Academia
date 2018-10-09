@@ -33,6 +33,7 @@ namespace CatApp
             aluno_editado = (DataRowView)AlunosBindingSource.List[index];
             TextBoxAulasTotais.Text = aluno_editado[colunas.AulasPagas].ToString();
             TravaAtualizar = travaAtualizar;
+            label1.Text = "Número total de aulas d" + utilidades.adeq(aluno_editado, utilidades.adeqSituacoes.ao) + " alun" + utilidades.adeq(aluno_editado, utilidades.adeqSituacoes.ao);
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -44,20 +45,20 @@ namespace CatApp
         {
             bool resultado = false;
             if (TextBoxAulasAdicionadas.Text == "" || TextBoxAulasAdicionadas.Text == "-") {
-                MessageBox.Show("escreva quantas aulas você deseja adicionar à esse aluno!", "Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("escreva quantas aulas você deseja adicionar à ess" + utilidades.adeq(aluno_editado, utilidades.adeqSituacoes.ae) + " alun" + utilidades.adeq(aluno_editado, utilidades.adeqSituacoes.ao) + "!", "Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             int valor = Int32.Parse(TextBoxAulasAdicionadas.Text);
             if (valor > 0)
             {
-                if (MessageBox.Show("Você deseja adicionar " + TextBoxAulasAdicionadas.Text + " aulas ao aluno " + (string)aluno_editado[colunas.Nome] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Você deseja adicionar " + TextBoxAulasAdicionadas.Text + " aula" + (valor > 1 ? "s " : string.Empty) + utilidades.adeq(aluno_editado, utilidades.adeqSituacoes.aaao) + " alun" + utilidades.adeq(aluno_editado, utilidades.adeqSituacoes.ao) + " " + (string)aluno_editado[colunas.Nome] + "?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     resultado = true;
                 }
             }
             else if (valor < 0)
             {
-                if (MessageBox.Show("Você deseja remover " + (-valor) + " aulas do aluno " + (string)aluno_editado[colunas.Nome] + " ?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Você deseja remover " + (-valor) + " aula" + (valor < -1 ? "s" : string.Empty) + " d" + utilidades.adeq(aluno_editado, utilidades.adeqSituacoes.ao) + " alun" + utilidades.adeq(aluno_editado, utilidades.adeqSituacoes.ao) + " " + (string)aluno_editado[colunas.Nome] + " ?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     resultado = true;
                 }
@@ -65,7 +66,7 @@ namespace CatApp
             }
             else
             {
-                if (MessageBox.Show("Tem certeza que quer fechar o diálogo sem adicionar aulas?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (MessageBox.Show("Tem certeza que quer fechar o formulário sem adicionar aulas?", "Adicionar aulas", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     this.Close();
                 }

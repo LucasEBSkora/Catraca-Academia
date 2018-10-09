@@ -36,11 +36,14 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gênero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroCartao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horarios_aulas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ultima_entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data_inscricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Aniversario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Idade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.adicionar_aulas = new System.Windows.Forms.DataGridViewButtonColumn();
             this.editar = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -76,11 +79,14 @@
             this.dataGridViewTextBoxColumn3,
             this.Gênero,
             this.dataGridViewTextBoxColumn4,
+            this.numeroCartao,
             this.horarios_aulas,
             this.ultima_entrada,
             this.data_inscricao,
             this.Telefone,
             this.Email,
+            this.Aniversario,
+            this.Idade,
             this.dataGridViewCheckBoxColumn1,
             this.adicionar_aulas,
             this.editar,
@@ -111,7 +117,6 @@
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Nome";
-            this.dataGridViewTextBoxColumn3.FillWeight = 30.83827F;
             this.dataGridViewTextBoxColumn3.HeaderText = "Nome";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -129,15 +134,23 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "Aulas pagas";
-            this.dataGridViewTextBoxColumn4.FillWeight = 15F;
+            this.dataGridViewTextBoxColumn4.FillWeight = 50F;
             this.dataGridViewTextBoxColumn4.HeaderText = "Aulas pagas";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
+            // numeroCartao
+            // 
+            this.numeroCartao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.numeroCartao.DataPropertyName = "numeroCartao";
+            this.numeroCartao.HeaderText = "Número do cartão";
+            this.numeroCartao.Name = "numeroCartao";
+            this.numeroCartao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.numeroCartao.Width = 50;
+            // 
             // horarios_aulas
             // 
             this.horarios_aulas.DataPropertyName = "horarios_aulas";
-            this.horarios_aulas.FillWeight = 30.83827F;
             this.horarios_aulas.HeaderText = "Horários das aulas";
             this.horarios_aulas.Name = "horarios_aulas";
             // 
@@ -163,16 +176,33 @@
             // Telefone
             // 
             this.Telefone.DataPropertyName = "Telefone";
-            this.Telefone.FillWeight = 30.83827F;
             this.Telefone.HeaderText = "Telefone";
             this.Telefone.Name = "Telefone";
             // 
             // Email
             // 
             this.Email.DataPropertyName = "Email";
-            this.Email.FillWeight = 30.83827F;
             this.Email.HeaderText = "Email";
             this.Email.Name = "Email";
+            // 
+            // Aniversario
+            // 
+            this.Aniversario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Aniversario.DataPropertyName = "Aniversario";
+            this.Aniversario.HeaderText = "Aniversário";
+            this.Aniversario.Name = "Aniversario";
+            this.Aniversario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Aniversario.Width = 70;
+            // 
+            // Idade
+            // 
+            this.Idade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Idade.DataPropertyName = "Idade";
+            this.Idade.FillWeight = 50F;
+            this.Idade.HeaderText = "Idade";
+            this.Idade.Name = "Idade";
+            this.Idade.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Idade.Width = 66;
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -305,7 +335,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "CatApp V0.9";
+            this.Text = "CatApp V1.0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.alunosDataGridView)).EndInit();
@@ -339,11 +369,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Gênero;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroCartao;
         private System.Windows.Forms.DataGridViewTextBoxColumn horarios_aulas;
         private System.Windows.Forms.DataGridViewTextBoxColumn ultima_entrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn data_inscricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefone;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Aniversario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Idade;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewButtonColumn adicionar_aulas;
         private System.Windows.Forms.DataGridViewButtonColumn editar;
