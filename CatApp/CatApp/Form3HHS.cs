@@ -78,7 +78,7 @@ namespace CatApp
             HData.Width = 70;
             HData.Name = "Data";
             HTabela.Columns.Add(HData);
-
+            
 
             DataGridViewColumn HEntrada = new DataGridViewTextBoxColumn();
             HEntrada.DataPropertyName = "SEntrada";
