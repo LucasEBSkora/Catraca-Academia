@@ -243,7 +243,7 @@ namespace CatApp
                 MessageBox.Show("O campo IMC precisa conter um número decimal!", "Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            Medicao MedicaoNova = new Medicao(RMData.Value, Peso, GorduraCorporal, MusculoEsqueletico, GorduraVisceral, IMC);
+            Medicao MedicaoNova = new Medicao(RMData.Value.Date, Peso, GorduraCorporal, MusculoEsqueletico, GorduraVisceral, IMC);
             int indice;
             if (RMLista.Count == 0) indice = -1;
             else indice = RMLista.FindIndex(x => x.Data == MedicaoNova.Data);

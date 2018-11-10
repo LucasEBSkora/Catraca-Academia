@@ -122,7 +122,8 @@ namespace CatApp
                 MessageBox.Show("Não é possível adicionar um registro vazio!", "cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            EntradaHistorico entradaNova = new EntradaHistorico(HAData.Value, HARegistro.Text);
+            EntradaHistorico entradaNova = new EntradaHistorico(HAData.Value.Date, HARegistro.Text);
+            MessageBox.Show(entradaNova.Data.ToLongDateString());
             int indice = HALista.FindIndex(x => x.Data == entradaNova.Data);
             if (indice != -1)
             {
@@ -153,6 +154,8 @@ namespace CatApp
             int indice = HALista.FindIndex(x => x.Data == HAData.Value);
             if (indice != -1)
             {
+
+
                 if (MessageBox.Show("Tem certeza que deseja remover a medição do dia " + HAData.Value.ToShortDateString() + "?", "Cuidado!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
                     HALista.RemoveAt(indice);
