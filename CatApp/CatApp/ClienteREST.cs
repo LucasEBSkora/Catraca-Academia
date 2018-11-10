@@ -26,7 +26,7 @@ namespace CatApp
     }
     public static class ClienteREST
     {
-        private const bool ModoDebug = true;
+        private const bool ModoDebug = false;
         public static string endereco;
 
         public static string makeRequest(Comandos comando, int AulasPagasRestantes = 0)
