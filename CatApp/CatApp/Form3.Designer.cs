@@ -667,7 +667,7 @@
             this.checkBox1.TabIndex = 47;
             this.checkBox1.Text = "Aluno está ativo?";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+
             // 
             // Nome
             // 

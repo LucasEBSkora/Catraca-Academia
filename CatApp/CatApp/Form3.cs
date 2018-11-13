@@ -41,6 +41,7 @@ namespace CatApp
             if (index != -1) InicializarInformacoes();
             else FormatacaoNovoAluno();
             setup = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
         }
         
         private void FormatacaoNovoAluno()
@@ -71,8 +72,9 @@ namespace CatApp
         {
             Aluno = (DataRowView)AlunosBindingSource.List[index];
             Nome.Text = (string)Aluno[colunas.Nome];
-            UltimoEvento = true;
+            UltimoEvento = false;
             checkBox1.Checked = (bool)Aluno[colunas.AlunoAtivo];
+            Cartao.Enabled = (bool)Aluno[colunas.AlunoAtivo];
             CodigoRFID = (string)Aluno[colunas.CodigoRFID];
             AulasPagas.Text = Aluno[colunas.AulasPagas].ToString();
             historico_med.Text = (string)Aluno[colunas.historicoMedico];
@@ -102,11 +104,10 @@ namespace CatApp
             }
             if (checkBox1.Checked)
             {
-                if (index != -1) MessageBox.Show("Agora que esse aluno foi reativado, será necessário registrar um novo cartão para ele!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else return;
+                if (index != -1) MessageBox.Show("Agora que ess" + utilidades.adeq(Aluno, utilidades.adeqSituacoes.ae) + " alun" + utilidades.adeq(Aluno, utilidades.adeqSituacoes.ao) + " foi reativad" + utilidades.adeq(Aluno, utilidades.adeqSituacoes.ao) + ", será necessário registrar um novo cartão para el" + utilidades.adeq(Aluno, utilidades.adeqSituacoes.ae) + "!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (index == -1) CodigoRFID = "0";
-            else if (MessageBox.Show("Se esse aluno for desativado, não haverá mais um cartão associado a ele, e um novo terá de ser registrado. Tem certeza que deseja continuar?", "Aviso!", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel)
+            else if (MessageBox.Show("Se ess" + utilidades.adeq(Aluno, utilidades.adeqSituacoes.ae) + " alun" + utilidades.adeq(Aluno, utilidades.adeqSituacoes.ao) + " for desativad" + utilidades.adeq(Aluno, utilidades.adeqSituacoes.ao) + ", não haverá mais um cartão associado a el" + utilidades.adeq(Aluno, utilidades.adeqSituacoes.ae) + ", e um novo terá de ser registrado. Tem certeza que deseja continuar?", "Aviso!", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel)
             {
                 UltimoEvento = true;
                 checkBox1.Checked = true;
@@ -162,8 +163,12 @@ namespace CatApp
                 }
                 if (!int.TryParse(NumeroCartao.Text, out resultado))
                 {
-                    MessageBox.Show("há algo errado com a formatação do número do cartão! Talvez haja um espaço sobrando entre os caracteres.", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (NumeroCartao.Text != "")
+                    {
+                        MessageBox.Show("há algo errado com a formatação do número do cartão! Talvez haja um espaço sobrando entre os caracteres.", "erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else NumeroCartao.Text = "0";
                 }
                 else if (resultado == 0)
                 {
@@ -241,7 +246,10 @@ namespace CatApp
                 Aluno[colunas.Anotacoes] = anotacoes.Text;
                 Aluno[colunas.dataInscricao] = data.Text;
                 Aluno[colunas.UltimaEntrada] = string.Empty;
-                Aluno[colunas.NumeroCartao] = int.Parse(NumeroCartao.Text);
+                if (int.TryParse(NumeroCartao.Text, out int resultado)) {
+                    Aluno[colunas.NumeroCartao] = resultado;
+                }
+                else Aluno[colunas.NumeroCartao] = 0;
                 Aluno[colunas.Aniversario] = Aniversario.Value.Date.ToShortDateString();
 
                 bool FezAniversarioEsseAno = false;
