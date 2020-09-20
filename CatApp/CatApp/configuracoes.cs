@@ -15,7 +15,7 @@ namespace CatApp
         public Configurações()
         {
             InitializeComponent();
-            endereco.Text = config.endereco;
+            porta.Text = config.port;
             HoraAbre.Value = config.hora_abre;
             HoraFecha.Value = config.hora_fecha;
         }
@@ -23,11 +23,11 @@ namespace CatApp
         private void button2_Click(object sender, EventArgs e)
         {
             var configFile = ConfigurationManager.OpenExeConfiguration("CatApp.exe");
-            if (endereco.Text != config.endereco)
+            if (porta.Text != config.port)
             {
-                configFile.AppSettings.Settings["IP"].Value = endereco.Text;
-                config.endereco = endereco.Text;
-                ClienteREST.endereco = endereco.Text;
+                configFile.AppSettings.Settings["PORT"].Value = porta.Text;
+                config.port= porta.Text;
+                Servidor.Port = porta.Text;
             }
             if (HoraAbre.Value.ToShortTimeString() != config.hora_abre.ToShortTimeString())
             {
@@ -49,5 +49,6 @@ namespace CatApp
         {
             this.Close();
         }
+
     }
 }

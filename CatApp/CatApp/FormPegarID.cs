@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Net;
+
 namespace CatApp
 {
     public partial class FormPegarID : Form
@@ -16,7 +18,8 @@ namespace CatApp
         public int encontrou;
         int spinner_imagem;
         public bool fechar;
-        object trava;
+        readonly object trava;
+        private Servidor.ResponseGenerator outra;
         private void button1_Click(object sender, EventArgs e)
         {
             fechar = true;
@@ -34,41 +37,35 @@ namespace CatApp
             spinner_imagem = 0;
             fechar = false;
             pictureBox1.Load("..\\..\\..\\spinner0.png");
-            var thread = new Thread(() => procurar());
+            var thread = new Thread(() => spinner());
             thread.Start();
+            outra = Servidor.responseGenerator;
+            Servidor.responseGenerator = procurar;
         }
 
-        private void procurar()
+        private string procurar(HttpListenerRequest value)
+        {
+            string ID = value.RawUrl.Substring(1);
+            if (ID.Length == 0) return "empty";
+            else
+            {
+                encontrou = -1;
+                rfiduid = ID;
+                return "lido";
+            }
+        }
+
+
+        private void spinner()
         {
 
-            lock (trava)
+            while (encontrou != -1 && !fechar && !IsDisposed)
             {
-                while (encontrou != -1 && !fechar && !IsDisposed)
-                {
-                    string ret = ClienteREST.makeRequest(Comandos.readme);
-                    if (ret == "falhou")
-                    {
-                        toolStripStatusLabel1.Text = "Erro na comunicação com a porta!";
-                    }
-                    else
-                    {
-                        retornoRFID retorno = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<retornoRFID>(ret);
-
-                        if (retorno.variables.rfid_uid != "")
-                        {
-                            encontrou = -1;
-                            rfiduid = retorno.variables.rfid_uid;
-                        }
-                        else
-                        {
-                            Thread.Sleep(50);
-                            spinner_imagem = ((spinner_imagem == 11) ? 0 : spinner_imagem + 1);
-                            pictureBox1.Load("..\\..\\..\\spinner" + spinner_imagem + ".png");
-                            toolStripStatusLabel1.Text = "tentativa número " + encontrou++;
-                        }
-                    } 
-                }
+                Thread.Sleep(50);
+                spinner_imagem = ((spinner_imagem == 11) ? 0 : spinner_imagem + 1);
+                pictureBox1.Load("..\\..\\..\\spinner" + spinner_imagem + ".png"); 
             }
+            Servidor.responseGenerator = outra;
             if (!IsDisposed)
             {
                 this.Invoke((MethodInvoker)delegate

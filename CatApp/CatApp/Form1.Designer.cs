@@ -31,6 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.alunosDataGridView = new System.Windows.Forms.DataGridView();
+            this.alunosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.database_alunosDataSet = new CatApp.Database_alunosDataSet();
+            this.botaoadicionar = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ts_mostraralunos = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.alunosTableAdapter = new CatApp.Database_alunosDataSetTableAdapters.AlunosTableAdapter();
+            this.tableAdapterManager = new CatApp.Database_alunosDataSetTableAdapters.TableAdapterManager();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,17 +59,6 @@
             this.adicionar_aulas = new System.Windows.Forms.DataGridViewButtonColumn();
             this.editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deletar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.alunosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.database_alunosDataSet = new CatApp.Database_alunosDataSet();
-            this.botaoadicionar = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ts_mostraralunos = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.alunosTableAdapter = new CatApp.Database_alunosDataSetTableAdapters.AlunosTableAdapter();
-            this.tableAdapterManager = new CatApp.Database_alunosDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.alunosDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alunosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database_alunosDataSet)).BeginInit();
@@ -95,153 +95,11 @@
             this.alunosDataGridView.Location = new System.Drawing.Point(12, 80);
             this.alunosDataGridView.Name = "alunosDataGridView";
             this.alunosDataGridView.RowHeadersVisible = false;
+            this.alunosDataGridView.RowHeadersWidth = 51;
             this.alunosDataGridView.RowTemplate.Height = 24;
             this.alunosDataGridView.Size = new System.Drawing.Size(1144, 200);
             this.alunosDataGridView.TabIndex = 1;
             this.alunosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.alunosDataGridView_CellContentClick);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Código";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Código RFID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Código RFID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Nome";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Nome";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // Gênero
-            // 
-            this.Gênero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Gênero.DataPropertyName = "Gênero";
-            this.Gênero.FillWeight = 30.83827F;
-            this.Gênero.HeaderText = "Gênero";
-            this.Gênero.Name = "Gênero";
-            this.Gênero.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Gênero.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Aulas pagas";
-            this.dataGridViewTextBoxColumn4.FillWeight = 50F;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Aulas pagas";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // numeroCartao
-            // 
-            this.numeroCartao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.numeroCartao.DataPropertyName = "numeroCartao";
-            this.numeroCartao.HeaderText = "Número do cartão";
-            this.numeroCartao.Name = "numeroCartao";
-            this.numeroCartao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.numeroCartao.Width = 50;
-            // 
-            // horarios_aulas
-            // 
-            this.horarios_aulas.DataPropertyName = "horarios_aulas";
-            this.horarios_aulas.HeaderText = "Horários das aulas";
-            this.horarios_aulas.Name = "horarios_aulas";
-            // 
-            // ultima_entrada
-            // 
-            this.ultima_entrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ultima_entrada.DataPropertyName = "ultima_entrada";
-            this.ultima_entrada.FillWeight = 30.83827F;
-            this.ultima_entrada.HeaderText = "Última entrada";
-            this.ultima_entrada.Name = "ultima_entrada";
-            this.ultima_entrada.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ultima_entrada.Width = 70;
-            // 
-            // data_inscricao
-            // 
-            this.data_inscricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.data_inscricao.DataPropertyName = "data_inscricao";
-            this.data_inscricao.HeaderText = "Data de inscrição";
-            this.data_inscricao.Name = "data_inscricao";
-            this.data_inscricao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.data_inscricao.Width = 70;
-            // 
-            // Telefone
-            // 
-            this.Telefone.DataPropertyName = "Telefone";
-            this.Telefone.HeaderText = "Telefone";
-            this.Telefone.Name = "Telefone";
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            // 
-            // Aniversario
-            // 
-            this.Aniversario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Aniversario.DataPropertyName = "Aniversario";
-            this.Aniversario.HeaderText = "Aniversário";
-            this.Aniversario.Name = "Aniversario";
-            this.Aniversario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Aniversario.Width = 70;
-            // 
-            // Idade
-            // 
-            this.Idade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Idade.DataPropertyName = "Idade";
-            this.Idade.FillWeight = 50F;
-            this.Idade.HeaderText = "Idade";
-            this.Idade.Name = "Idade";
-            this.Idade.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Idade.Width = 66;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Aluno_ativo";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Aluno ativo";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCheckBoxColumn1.Visible = false;
-            this.dataGridViewCheckBoxColumn1.Width = 40;
-            // 
-            // adicionar_aulas
-            // 
-            this.adicionar_aulas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.adicionar_aulas.FillWeight = 151.7346F;
-            this.adicionar_aulas.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.adicionar_aulas.HeaderText = "adicionar aulas";
-            this.adicionar_aulas.Name = "adicionar_aulas";
-            this.adicionar_aulas.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.adicionar_aulas.Width = 55;
-            // 
-            // editar
-            // 
-            this.editar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.editar.FillWeight = 161.2811F;
-            this.editar.HeaderText = "Ver dados";
-            this.editar.Name = "editar";
-            this.editar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.editar.Width = 55;
-            // 
-            // deletar
-            // 
-            this.deletar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.deletar.FillWeight = 218.4093F;
-            this.deletar.HeaderText = "Deletar aluno";
-            this.deletar.Name = "deletar";
-            this.deletar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.deletar.Width = 55;
             // 
             // alunosBindingSource
             // 
@@ -280,20 +138,20 @@
             this.ts_mostraralunos,
             this.configuraçõesToolStripMenuItem});
             this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
-            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.opçõesToolStripMenuItem.Text = "Opções";
             // 
             // ts_mostraralunos
             // 
             this.ts_mostraralunos.Name = "ts_mostraralunos";
-            this.ts_mostraralunos.Size = new System.Drawing.Size(269, 26);
+            this.ts_mostraralunos.Size = new System.Drawing.Size(277, 26);
             this.ts_mostraralunos.Text = "Escondendo Alunos Inativos";
             this.ts_mostraralunos.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // configuraçõesToolStripMenuItem
             // 
             this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
-            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(269, 26);
+            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.configuraçõesToolStripMenuItem.Text = "Configurações";
             this.configuraçõesToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesToolStripMenuItem_Click);
             // 
@@ -311,7 +169,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 16);
             // 
             // alunosTableAdapter
             // 
@@ -322,6 +180,166 @@
             this.tableAdapterManager.AlunosTableAdapter = this.alunosTableAdapter;
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.UpdateOrder = CatApp.Database_alunosDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Código";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Código RFID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Código RFID";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Nome";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // Gênero
+            // 
+            this.Gênero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Gênero.DataPropertyName = "Gênero";
+            this.Gênero.FillWeight = 30.83827F;
+            this.Gênero.HeaderText = "Gênero";
+            this.Gênero.MinimumWidth = 6;
+            this.Gênero.Name = "Gênero";
+            this.Gênero.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Gênero.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Aulas pagas";
+            this.dataGridViewTextBoxColumn4.FillWeight = 50F;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Aulas pagas";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // numeroCartao
+            // 
+            this.numeroCartao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.numeroCartao.DataPropertyName = "numeroCartao";
+            this.numeroCartao.HeaderText = "Número do cartão";
+            this.numeroCartao.MinimumWidth = 6;
+            this.numeroCartao.Name = "numeroCartao";
+            this.numeroCartao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.numeroCartao.Width = 50;
+            // 
+            // horarios_aulas
+            // 
+            this.horarios_aulas.DataPropertyName = "horarios_aulas";
+            this.horarios_aulas.HeaderText = "Horários das aulas";
+            this.horarios_aulas.MinimumWidth = 6;
+            this.horarios_aulas.Name = "horarios_aulas";
+            // 
+            // ultima_entrada
+            // 
+            this.ultima_entrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ultima_entrada.DataPropertyName = "ultima_entrada";
+            this.ultima_entrada.FillWeight = 30.83827F;
+            this.ultima_entrada.HeaderText = "Última entrada";
+            this.ultima_entrada.MinimumWidth = 6;
+            this.ultima_entrada.Name = "ultima_entrada";
+            this.ultima_entrada.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ultima_entrada.Width = 70;
+            // 
+            // data_inscricao
+            // 
+            this.data_inscricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.data_inscricao.DataPropertyName = "data_inscricao";
+            this.data_inscricao.HeaderText = "Data de inscrição";
+            this.data_inscricao.MinimumWidth = 6;
+            this.data_inscricao.Name = "data_inscricao";
+            this.data_inscricao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.data_inscricao.Width = 70;
+            // 
+            // Telefone
+            // 
+            this.Telefone.DataPropertyName = "Telefone";
+            this.Telefone.HeaderText = "Telefone";
+            this.Telefone.MinimumWidth = 6;
+            this.Telefone.Name = "Telefone";
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
+            this.Email.Name = "Email";
+            // 
+            // Aniversario
+            // 
+            this.Aniversario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Aniversario.DataPropertyName = "Aniversario";
+            this.Aniversario.HeaderText = "Aniversário";
+            this.Aniversario.MinimumWidth = 6;
+            this.Aniversario.Name = "Aniversario";
+            this.Aniversario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Aniversario.Width = 70;
+            // 
+            // Idade
+            // 
+            this.Idade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Idade.DataPropertyName = "Idade";
+            this.Idade.FillWeight = 50F;
+            this.Idade.HeaderText = "Idade";
+            this.Idade.MinimumWidth = 6;
+            this.Idade.Name = "Idade";
+            this.Idade.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Idade.Width = 66;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Aluno_ativo";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Aluno ativo";
+            this.dataGridViewCheckBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCheckBoxColumn1.Visible = false;
+            this.dataGridViewCheckBoxColumn1.Width = 40;
+            // 
+            // adicionar_aulas
+            // 
+            this.adicionar_aulas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.adicionar_aulas.FillWeight = 151.7346F;
+            this.adicionar_aulas.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.adicionar_aulas.HeaderText = "adicionar aulas";
+            this.adicionar_aulas.MinimumWidth = 6;
+            this.adicionar_aulas.Name = "adicionar_aulas";
+            this.adicionar_aulas.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.adicionar_aulas.Width = 55;
+            // 
+            // editar
+            // 
+            this.editar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.editar.FillWeight = 161.2811F;
+            this.editar.HeaderText = "Ver dados";
+            this.editar.MinimumWidth = 6;
+            this.editar.Name = "editar";
+            this.editar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.editar.Width = 55;
+            // 
+            // deletar
+            // 
+            this.deletar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.deletar.FillWeight = 218.4093F;
+            this.deletar.HeaderText = "Deletar aluno";
+            this.deletar.MinimumWidth = 6;
+            this.deletar.Name = "deletar";
+            this.deletar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.deletar.Width = 55;
             // 
             // Form1
             // 

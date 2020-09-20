@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.endereco = new System.Windows.Forms.TextBox();
+            this.porta = new System.Windows.Forms.TextBox();
             this.HoraAbre = new System.Windows.Forms.DateTimePicker();
             this.HoraFecha = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,18 +40,18 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // endereco
+            // porta
             // 
-            this.endereco.Location = new System.Drawing.Point(40, 60);
-            this.endereco.Name = "endereco";
-            this.endereco.Size = new System.Drawing.Size(363, 22);
-            this.endereco.TabIndex = 0;
+            this.porta.Location = new System.Drawing.Point(40, 49);
+            this.porta.Name = "porta";
+            this.porta.Size = new System.Drawing.Size(102, 22);
+            this.porta.TabIndex = 0;
             // 
             // HoraAbre
             // 
             this.HoraAbre.CustomFormat = "HH:mm";
             this.HoraAbre.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.HoraAbre.Location = new System.Drawing.Point(253, 118);
+            this.HoraAbre.Location = new System.Drawing.Point(253, 47);
             this.HoraAbre.Name = "HoraAbre";
             this.HoraAbre.ShowUpDown = true;
             this.HoraAbre.Size = new System.Drawing.Size(69, 22);
@@ -62,7 +62,7 @@
             // 
             this.HoraFecha.CustomFormat = "HH:mm";
             this.HoraFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.HoraFecha.Location = new System.Drawing.Point(253, 171);
+            this.HoraFecha.Location = new System.Drawing.Point(253, 118);
             this.HoraFecha.Name = "HoraFecha";
             this.HoraFecha.ShowUpDown = true;
             this.HoraFecha.Size = new System.Drawing.Size(69, 22);
@@ -73,14 +73,14 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(37, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 17);
+            this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Endereço IP";
+            this.label1.Text = "Porta";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(250, 90);
+            this.label2.Location = new System.Drawing.Point(250, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 17);
             this.label2.TabIndex = 4;
@@ -89,7 +89,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(250, 146);
+            this.label3.Location = new System.Drawing.Point(250, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 17);
             this.label3.TabIndex = 5;
@@ -101,7 +101,7 @@
             this.groupBox1.Controls.Add(this.Cancela);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.endereco);
+            this.groupBox1.Controls.Add(this.porta);
             this.groupBox1.Controls.Add(this.HoraFecha);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.HoraAbre);
@@ -150,7 +150,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox endereco;
+        private System.Windows.Forms.TextBox porta;
         private System.Windows.Forms.DateTimePicker HoraAbre;
         private System.Windows.Forms.DateTimePicker HoraFecha;
         private System.Windows.Forms.Label label1;
