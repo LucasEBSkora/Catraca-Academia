@@ -39,9 +39,10 @@
             // pictureBox1
             // 
             this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(71, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(169, 28);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.Size = new System.Drawing.Size(475, 462);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -50,23 +51,28 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 261);
+            this.statusStrip.Location = new System.Drawing.Point(0, 598);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(359, 25);
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 33, 0);
+            this.statusStrip.Size = new System.Drawing.Size(853, 63);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.Enabled = false;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 20);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(291, 48);
             this.toolStripStatusLabel1.Text = "tentativa número";
+            this.toolStripStatusLabel1.Visible = false;
+            this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(255, 226);
+            this.button1.Location = new System.Drawing.Point(606, 523);
+            this.button1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 23);
+            this.button1.Size = new System.Drawing.Size(223, 53);
             this.button1.TabIndex = 2;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
@@ -74,14 +80,15 @@
             // 
             // FormPegarID
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(359, 286);
+            this.ClientSize = new System.Drawing.Size(853, 661);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormPegarID";

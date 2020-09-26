@@ -36,7 +36,7 @@ namespace CatApp
                 if (DescontarAula)
                 {
                     Aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
-                    //Aluno[colunas.AulasPagas] = (int)Aluno[colunas.AulasPagas] - 1;
+                    Aluno[colunas.AulasPagas] = (int)Aluno[colunas.AulasPagas] - 1;
                 }
                 //Aluno[colunas.Historico] += AdicionarAoHistorico;
                 List<EntradaHistorico> HLista = JsonConvert.DeserializeObject<List<EntradaHistorico>>((string)Aluno[colunas.Historico]);
@@ -88,7 +88,6 @@ namespace CatApp
             string ID = value.RawUrl.Substring(1);
             if (ID.Length == 0) return "empty";
             IndiceAluno = alunosBindingSource.Find(colunas.CodigoRFID, ID);
-
             if (IndiceAluno == -1) return "rejeitado";
             else
             {
@@ -102,9 +101,18 @@ namespace CatApp
                     }
                     else
                     {
-                        toolStripStatusLabel1.Text = "Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortTimeString();
-                        aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
-                        AdicionarAoHistorico += "\n\n" + DateTime.Now.ToShortTimeString() + " - Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " abriu a porta pela primeira vez no dia";
+                        int num_aulas = (int)aluno[colunas.AulasPagas];
+                        if (num_aulas == 0)
+                        {
+                            toolStripStatusLabel1.Text = "Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " " + (string)aluno[colunas.Nome] + " tentou entrar às " + DateTime.Now.ToShortTimeString() + ", mas suas aulas pagas acabaram";
+                            return "sem_credito";
+                        } else
+                        {
+                            toolStripStatusLabel1.Text = "Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortTimeString();
+                            aluno[colunas.UltimaEntrada] = DateTime.Now.ToShortDateString();
+                            AdicionarAoHistorico += "\n\n" + DateTime.Now.ToShortTimeString() + " - Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " abriu a porta pela primeira vez no dia";
+                            DescontarAula = true;
+                        }
                     }
                     this.Invoke(atualizar);
                     return "aprovado";
