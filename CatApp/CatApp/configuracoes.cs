@@ -16,6 +16,7 @@ namespace CatApp
         {
             InitializeComponent();
             porta.Text = config.port;
+            textBoxIP.Text = config.ip;
             HoraAbre.Value = config.hora_abre;
             HoraFecha.Value = config.hora_fecha;
         }
@@ -26,8 +27,14 @@ namespace CatApp
             if (porta.Text != config.port)
             {
                 configFile.AppSettings.Settings["PORT"].Value = porta.Text;
-                config.port= porta.Text;
+                config.port = porta.Text;
                 Servidor.Port = porta.Text;
+            }
+            if (textBoxIP.Text != config.ip)
+            {
+                configFile.AppSettings.Settings["IP"].Value = textBoxIP.Text;
+                config.ip = textBoxIP.Text;
+                Servidor.Ip = textBoxIP.Text;
             }
             if (HoraAbre.Value.ToShortTimeString() != config.hora_abre.ToShortTimeString())
             {
@@ -50,5 +57,9 @@ namespace CatApp
             this.Close();
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

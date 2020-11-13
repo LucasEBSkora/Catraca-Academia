@@ -21,6 +21,8 @@ namespace CatApp
         public string connected { get; set; }
     }
     static class config {
+
+        static public string ip { get; set; }
         static public string port { get; set; }
         static public DateTime hora_abre { get; set; }
         static public DateTime hora_fecha { get; set; }
@@ -91,10 +93,10 @@ namespace CatApp
         static void Main()
         {   
             config.port = ConfigurationManager.AppSettings.Get("PORT");
+            config.ip = ConfigurationManager.AppSettings.Get("IP");
             config.hora_abre = DateTime.Parse(ConfigurationManager.AppSettings.Get("abre"));
             config.hora_fecha = DateTime.Parse(ConfigurationManager.AppSettings.Get("fecha"));
-
-            Servidor.Port = config.port;
+            Servidor.setBoth(config.ip, config.port);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -37,6 +37,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Confirma = new System.Windows.Forms.Button();
             this.Cancela = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxIP = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +99,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxIP);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.Confirma);
             this.groupBox1.Controls.Add(this.Cancela);
             this.groupBox1.Controls.Add(this.label3);
@@ -113,7 +117,7 @@
             // 
             // Confirma
             // 
-            this.Confirma.Location = new System.Drawing.Point(40, 90);
+            this.Confirma.Location = new System.Drawing.Point(12, 143);
             this.Confirma.Name = "Confirma";
             this.Confirma.Size = new System.Drawing.Size(102, 50);
             this.Confirma.TabIndex = 7;
@@ -123,13 +127,30 @@
             // 
             // Cancela
             // 
-            this.Cancela.Location = new System.Drawing.Point(40, 146);
+            this.Cancela.Location = new System.Drawing.Point(120, 146);
             this.Cancela.Name = "Cancela";
             this.Cancela.Size = new System.Drawing.Size(102, 47);
             this.Cancela.TabIndex = 6;
             this.Cancela.Text = "Rejeitar mudanças";
             this.Cancela.UseVisualStyleBackColor = true;
             this.Cancela.Click += new System.EventHandler(this.Cancela_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(37, 90);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(19, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Ip";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // textBoxIP
+            // 
+            this.textBoxIP.Location = new System.Drawing.Point(40, 110);
+            this.textBoxIP.Name = "textBoxIP";
+            this.textBoxIP.Size = new System.Drawing.Size(100, 22);
+            this.textBoxIP.TabIndex = 9;
             // 
             // Configurações
             // 
@@ -159,5 +180,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button Confirma;
         private System.Windows.Forms.Button Cancela;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxIP;
     }
 }
