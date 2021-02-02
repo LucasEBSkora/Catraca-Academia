@@ -86,9 +86,9 @@ namespace CatApp
         {
             //o url vem como "/id", entao tiramos na marra o /
             string ID = value.RawUrl.Substring(1);
-            if (ID.Length == 0) return "empty";
+            if (ID.Length == 0) return "empty\n";
             IndiceAluno = alunosBindingSource.Find(colunas.CodigoRFID, ID);
-            if (IndiceAluno == -1) return "rejeitado";
+            if (IndiceAluno == -1) return "rejeitado\n";
             else
             {
                 DataRowView aluno = (DataRowView)alunosBindingSource.List[IndiceAluno];
@@ -105,7 +105,7 @@ namespace CatApp
                         if (num_aulas == 0)
                         {
                             toolStripStatusLabel1.Text = "Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " " + (string)aluno[colunas.Nome] + " tentou entrar às " + DateTime.Now.ToShortTimeString() + ", mas suas aulas pagas acabaram";
-                            return "sem_credito";
+                            return "sem_credito\n";
                         } else
                         {
                             toolStripStatusLabel1.Text = "Alun" + utilidades.adeq(aluno, utilidades.adeqSituacoes.ao) + " " + (string)aluno[colunas.Nome] + " entrou às " + DateTime.Now.ToShortTimeString();
@@ -115,9 +115,9 @@ namespace CatApp
                         }
                     }
                     this.Invoke(atualizar);
-                    return "aprovado";
+                    return "aprovado\n";
                 }
-                else return "rejeitado";
+                else return "rejeitado\n";
             }
 
         }

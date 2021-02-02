@@ -46,12 +46,12 @@ namespace CatApp
         private string procurar(HttpListenerRequest value)
         {
             string ID = value.RawUrl.Substring(1);
-            if (ID.Length == 0) return "empty";
+            if (ID.Length == 0) return "empty\n";
             else
             {
                 encontrou = -1;
                 rfiduid = ID;
-                return "lido";
+                return "lido\n";
             }
         }
 
